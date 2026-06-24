@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { CAMPUSQ_APP_URL } from "@/lib/external-links";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -318,12 +319,14 @@ function CtaSection() {
           >
             Book a 20-min demo
           </Link>
-          <Link
-            to="/products"
+          <a
+            href={CAMPUSQ_APP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-md border border-border bg-white px-7 py-3 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700"
           >
-            See how it works
-          </Link>
+            Try CampusQ free
+          </a>
         </div>
       </div>
     </section>

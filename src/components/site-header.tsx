@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { CAMPUSQ_URL } from "@/lib/external-links";
+import { CAMPUSQ_LOGIN_URL } from "@/lib/external-links";
 
 const NAV = [
   { label: "Home", to: "/" as const },
@@ -40,7 +40,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2 shrink-0">
           <a
-            href={CAMPUSQ_URL}
+            href={CAMPUSQ_LOGIN_URL}
             className="hidden sm:inline-flex rounded-md bg-brand px-4 sm:px-5 py-2 text-sm font-medium text-brand-foreground transition-colors duration-500 ease-in-out hover:bg-purple-800"
           >
             Login
@@ -72,7 +72,7 @@ export function SiteHeader() {
             </Link>
           ))}
           <a
-            href={CAMPUSQ_URL}
+            href={CAMPUSQ_LOGIN_URL}
             className="mt-2 sm:hidden rounded-md bg-brand px-4 py-2 text-sm font-medium text-brand-foreground transition-colors duration-500 ease-in-out hover:bg-purple-800"
           >
             Login

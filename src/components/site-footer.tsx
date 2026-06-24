@@ -1,7 +1,7 @@
-import { CAMPUSQ_URL } from "@/lib/external-links";
+import { CAMPUSQ_APP_URL } from "@/lib/external-links";
 
 const FOOTER_LINK_HREFS: Record<string, string> = {
-  CampusQ: CAMPUSQ_URL,
+  CampusQ: CAMPUSQ_APP_URL,
   "team@retriive.com": "mailto:team@retriive.com",
 };
 

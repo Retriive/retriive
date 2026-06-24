@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CAMPUSQ_URL } from "@/lib/external-links";
+import { CAMPUSQ_APP_URL } from "@/lib/external-links";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -87,7 +87,9 @@ function ProductsPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href={CAMPUSQ_URL}
+                href={CAMPUSQ_APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-md bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground shadow-md shadow-purple-700/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-purple-800"
               >
                 Open CampusQ →
