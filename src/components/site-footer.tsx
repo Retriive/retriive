@@ -1,3 +1,10 @@
+import { CAMPUSQ_URL } from "@/lib/external-links";
+
+const FOOTER_LINK_HREFS: Record<string, string> = {
+  CampusQ: CAMPUSQ_URL,
+  "team@retriive.com": "mailto:team@retriive.com",
+};
+
 export function SiteFooter() {
   return (
     <footer id="contact" className="px-4 sm:px-8 lg:px-16 py-12 sm:py-16 border-t border-border/60">
@@ -21,7 +28,10 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               {col.links.map((l) => (
                 <li key={l}>
-                  <a href="#" className="transition-colors duration-500 ease-in-out hover:text-purple-700">
+                  <a
+                    href={FOOTER_LINK_HREFS[l] ?? "#"}
+                    className="transition-colors duration-500 ease-in-out hover:text-purple-700"
+                  >
                     {l}
                   </a>
                 </li>
