@@ -1,7 +1,7 @@
 // Central SEO configuration and helpers.
 // If the production domain changes, update SITE.url — everything else derives from it.
 export const SITE = {
-  url: "https://retriive.com",
+  url: "https://www.retriive.com",
   name: "Retriive Inc.",
   shortName: "Retriive",
   title: "Retriive Inc. — Intelligent AI solutions for modern enterprises",

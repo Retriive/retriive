@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://retriive.com/sitemap.xml
+Sitemap: https://www.retriive.com/sitemap.xml
