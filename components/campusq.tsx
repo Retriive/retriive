@@ -1,4 +1,5 @@
 import { ArrowUpRight, Check } from "lucide-react"
+import { CAMPUSQ_URL } from "@/lib/external-links"
 
 const capabilities = [
   "Instant answers about programs, credits, and graduation requirements",
@@ -38,7 +39,7 @@ export function CampusQ() {
               <a href="#contact" className="inline-flex h-10 items-center rounded-lg bg-[#16a34a] px-4 text-sm font-medium text-white hover:opacity-90">
                 Request a demo
               </a>
-              <a href="https://campusq.retriive.com" target="_blank" rel="noopener noreferrer"
+              <a href={CAMPUSQ_URL} target="_blank" rel="noopener noreferrer"
                 className="inline-flex h-10 items-center gap-1.5 rounded-lg border border-[#d1fae5] bg-white px-4 text-sm font-medium text-[#052e16] hover:bg-[#f0fdf4]">
                 campusq.retriive.com <ArrowUpRight className="size-3.5 text-[#16a34a]" />
               </a>

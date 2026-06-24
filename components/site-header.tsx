@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
+import { CAMPUSQ_URL } from "@/lib/external-links"
 
 const navLinks = [
   { label: "Product", href: "#campusq" },
@@ -35,6 +36,7 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-5 md:flex">
           <a href="mailto:team@retriive.com" className="text-sm text-[#737373] hover:text-[#0a0a0a]">Contact</a>
+          <a href={CAMPUSQ_URL} className="text-sm text-[#737373] hover:text-[#0a0a0a]">Login</a>
           <a href="#contact" className="rounded-lg bg-[#16a34a] px-4 py-1.5 text-sm font-semibold text-white hover:opacity-90">
             Request demo
           </a>
@@ -51,6 +53,7 @@ export function SiteHeader() {
             {navLinks.map(l => (
               <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2.5 text-sm text-[#737373] hover:bg-[#f5f5f5] hover:text-[#0a0a0a]">{l.label}</a>
             ))}
+            <a href={CAMPUSQ_URL} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2.5 text-sm text-[#737373] hover:bg-[#f5f5f5] hover:text-[#0a0a0a]">Login</a>
             <a href="#contact" onClick={() => setOpen(false)} className="mt-2 flex h-10 items-center justify-center rounded-lg bg-[#16a34a] text-sm font-semibold text-white">Request demo</a>
           </nav>
         </div>

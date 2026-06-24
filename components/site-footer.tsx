@@ -1,3 +1,5 @@
+import { CAMPUSQ_URL } from "@/lib/external-links"
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-[#e5e5e5] bg-white py-7">
@@ -12,6 +14,7 @@ export function SiteFooter() {
         <nav className="hidden items-center gap-7 sm:flex">
           {[
             { label: "Product",            href: "#campusq" },
+            { label: "CampusQ",            href: CAMPUSQ_URL },
             { label: "Why us",             href: "#what-we-do" },
             { label: "Company",            href: "#company" },
             { label: "team@retriive.com", href: "mailto:team@retriive.com" },
