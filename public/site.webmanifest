@@ -1,0 +1,17 @@
+{
+  "name": "Retriive Inc.",
+  "short_name": "Retriive",
+  "description": "Intelligent, retrieval-grounded AI solutions for modern institutions.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#7c3aed",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
+import { SITE, organizationJsonLd, websiteJsonLd } from "../lib/seo";
 
 
 function NotFoundComponent() {
@@ -80,16 +81,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: SITE.title },
+      { name: "description", content: SITE.description },
+      { name: "author", content: SITE.name },
+      { name: "robots", content: "index, follow" },
+      { name: "theme-color", content: SITE.themeColor },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:site_name", content: SITE.name },
+      { property: "og:title", content: SITE.title },
+      { property: "og:description", content: SITE.description },
+      { property: "og:url", content: SITE.url },
+      { property: "og:image", content: `${SITE.url}${SITE.ogImage}` },
+      { property: "og:locale", content: SITE.locale },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: SITE.twitter },
+      { name: "twitter:title", content: SITE.title },
+      { name: "twitter:description", content: SITE.description },
+      { name: "twitter:image", content: `${SITE.url}${SITE.ogImage}` },
     ],
     links: [
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "apple-touch-icon", href: "/favicon.svg" },
+      { rel: "manifest", href: "/site.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -113,6 +126,12 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([organizationJsonLd(), websiteJsonLd()]),
+          }}
+        />
       </head>
       <body>
         {children}

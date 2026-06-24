@@ -1,23 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { seo } from "../lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [
-      { title: "Retriive Inc. — Intelligent AI solutions for modern enterprises" },
-      {
-        name: "description",
-        content:
-          "Retriive Inc. builds AI platforms that streamline data access, synthesis, and actionable insights across any sector.",
-      },
-      { property: "og:title", content: "Retriive Inc." },
-      {
-        property: "og:description",
-        content: "Intelligent AI solutions for modern enterprises.",
-      },
-      { property: "og:url", content: "/" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
+    ...seo({
+      title: "Retriive Inc. — Answer any policy question in seconds",
+      description:
+        "Retriive indexes your handbooks, SOPs, and internal records into one AI search bar — every answer comes back with the exact cited source, paragraph, and page.",
+      path: "/",
+    }),
   }),
 
   component: Home,

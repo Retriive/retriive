@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { seo } from "../lib/seo";
 
 const TEAM = [
   { name: "Mahad Mohamed Yonis", role: "CEO", initials: "MY" },
@@ -9,22 +10,12 @@ const TEAM = [
 
 export const Route = createFileRoute("/about")({
   head: () => ({
-    meta: [
-      { title: "About — Retriive Inc." },
-      {
-        name: "description",
-        content:
-          "Meet the team behind Retriive Inc. — building AI infrastructure for the next generation of institutions.",
-      },
-      { property: "og:title", content: "About — Retriive Inc." },
-      {
-        property: "og:description",
-        content: "The minds behind Retriive Inc.",
-      },
-      { property: "og:url", content: "/about" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [{ rel: "canonical", href: "/about" }],
+    ...seo({
+      title: "About — Retriive Inc.",
+      description:
+        "Meet the team behind Retriive Inc. — building AI infrastructure for the next generation of institutions.",
+      path: "/about",
+    }),
   }),
 
   component: AboutPage,

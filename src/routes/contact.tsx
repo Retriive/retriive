@@ -1,24 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
+import { seo } from "../lib/seo";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
-    meta: [
-      { title: "Contact — Retriive Inc." },
-      {
-        name: "description",
-        content:
-          "Get in touch with the Retriive Inc. team. We respond to every message.",
-      },
-      { property: "og:title", content: "Contact — Retriive Inc." },
-      {
-        property: "og:description",
-        content: "Reach out to team@retriive.com.",
-      },
-      { property: "og:url", content: "/contact" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    ...seo({
+      title: "Contact — Retriive Inc.",
+      description:
+        "Get in touch with the Retriive Inc. team about a pilot or demo. We respond to every message at team@retriive.com.",
+      path: "/contact",
+    }),
   }),
   component: ContactPage,
 });

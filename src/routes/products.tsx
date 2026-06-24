@@ -1,25 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CAMPUSQ_URL } from "@/lib/external-links";
+import { seo } from "../lib/seo";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
-    meta: [
-      { title: "Products — Retriive Inc." },
-      {
-        name: "description",
-        content:
-          "Explore Retriive's growing suite of intelligent AI platforms, starting with CampusQ — live at Carleton University.",
-      },
-      { property: "og:title", content: "Products — Retriive Inc." },
-      {
-        property: "og:description",
-        content:
-          "CampusQ and more — AI products by Retriive Inc. for universities and enterprises.",
-      },
-      { property: "og:url", content: "/products" },
-      { property: "og:type", content: "website" },
-    ],
-    links: [{ rel: "canonical", href: "/products" }],
+    ...seo({
+      title: "Products — Retriive Inc.",
+      description:
+        "Explore Retriive's growing suite of intelligent AI platforms, starting with CampusQ — live at Carleton University.",
+      path: "/products",
+    }),
   }),
 
   component: ProductsPage,
