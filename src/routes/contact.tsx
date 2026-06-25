@@ -32,7 +32,7 @@ function ContactPage() {
     <section className="px-4 sm:px-8 lg:px-16 py-16 sm:py-20 lg:py-28">
       <div className="max-w-2xl mx-auto">
         <p className="text-sm font-medium text-brand">Contact</p>
-        <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 leading-tight">
+        <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground leading-tight">
           Let's talk.
         </h1>
         <p className="mt-4 text-base sm:text-lg text-muted-foreground">
@@ -40,7 +40,7 @@ function ContactPage() {
           solving. We respond to every message at{" "}
           <a
             href="mailto:team@retriive.com"
-            className="text-purple-700 hover:underline"
+            className="text-purple-700 dark:text-purple-400 hover:underline"
           >
             team@retriive.com
           </a>
@@ -52,7 +52,7 @@ function ContactPage() {
           className="mt-10 flex flex-col gap-5 rounded-2xl border border-border/60 bg-background/80 backdrop-blur p-6 sm:p-8"
         >
           <div className="flex flex-col gap-2">
-            <label htmlFor="name" className="text-sm font-medium text-zinc-900">
+            <label htmlFor="name" className="text-sm font-medium text-foreground">
               Name
             </label>
             <input
@@ -67,7 +67,7 @@ function ContactPage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label htmlFor="email" className="text-sm font-medium text-zinc-900">
+            <label htmlFor="email" className="text-sm font-medium text-foreground">
               Email
             </label>
             <input
@@ -84,7 +84,7 @@ function ContactPage() {
           <div className="flex flex-col gap-2">
             <label
               htmlFor="message"
-              className="text-sm font-medium text-zinc-900"
+              className="text-sm font-medium text-foreground"
             >
               Message
             </label>

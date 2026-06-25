@@ -57,17 +57,17 @@ function ProductsPage() {
       <article className="max-w-6xl mx-auto rounded-3xl border border-border bg-card overflow-hidden shadow-sm">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
           {/* Left: identity + CTA */}
-          <div className="lg:col-span-2 p-8 sm:p-10 border-b lg:border-b-0 lg:border-r border-border bg-gradient-to-br from-brand-soft to-white flex flex-col">
+          <div className="lg:col-span-2 p-8 sm:p-10 border-b lg:border-b-0 lg:border-r border-border bg-gradient-to-br from-brand-soft to-white dark:to-card flex flex-col">
             <div className="flex items-center gap-2">
               <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
                 Live pilot
               </span>
             </div>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-[-0.03em] text-zinc-900">
+            <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-[-0.03em] text-foreground">
               CampusQ
             </h2>
-            <p className="mt-2 text-sm font-medium text-purple-700">
+            <p className="mt-2 text-sm font-medium text-purple-700 dark:text-purple-400">
               Carleton University · Systems & Computer Engineering
             </p>
             <p className="mt-5 text-sm sm:text-base text-muted-foreground leading-relaxed flex-1">
@@ -84,7 +84,7 @@ function ProductsPage() {
               </a>
               <Link
                 to="/contact"
-                className="rounded-md border border-border bg-white px-5 py-2.5 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700"
+                className="rounded-md border border-border bg-white dark:bg-zinc-900 px-5 py-2.5 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700 dark:hover:border-purple-400 dark:hover:text-purple-400"
               >
                 Pilot at your school
               </Link>
@@ -94,10 +94,10 @@ function ProductsPage() {
           {/* Right: live dashboard preview */}
           <div className="lg:col-span-3 p-6 sm:p-8 lg:p-10">
             <div className="flex items-center justify-between mb-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                 Advisor Dashboard · All time
               </p>
-              <span className="text-[10px] font-mono text-zinc-400">
+              <span className="text-[10px] font-mono text-muted-foreground">
                 live
               </span>
             </div>
@@ -110,9 +110,9 @@ function ProductsPage() {
             </div>
 
             {/* Hourly question pattern */}
-            <div className="mt-6 rounded-xl border border-border bg-zinc-50/60 p-4">
+            <div className="mt-6 rounded-xl border border-border bg-muted/40 p-4">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-medium text-zinc-700">
+                <span className="text-xs font-medium text-foreground">
                   When students ask questions
                 </span>
                 <span className="text-[10px] text-muted-foreground">
@@ -131,22 +131,22 @@ function ProductsPage() {
 
             {/* Categories */}
             <div className="mt-6">
-              <p className="text-xs font-medium text-zinc-700 mb-3">
+              <p className="text-xs font-medium text-foreground mb-3">
                 Top categories
               </p>
               <ul className="space-y-2">
                 {CATEGORIES.map((c) => (
                   <li key={c.label} className="flex items-center gap-3">
-                    <span className="w-44 shrink-0 text-xs text-zinc-700 truncate">
+                    <span className="w-44 shrink-0 text-xs text-foreground truncate">
                       {c.label}
                     </span>
-                    <div className="flex-1 h-2 rounded-full bg-zinc-100 overflow-hidden">
+                    <div className="flex-1 h-2 rounded-full bg-muted overflow-hidden">
                       <div
                         className="h-full rounded-full bg-purple-700/80"
                         style={{ width: `${(c.n / maxCat) * 100}%` }}
                       />
                     </div>
-                    <span className="w-8 shrink-0 text-right text-xs font-mono text-zinc-500">
+                    <span className="w-8 shrink-0 text-right text-xs font-mono text-muted-foreground">
                       {c.n}
                     </span>
                   </li>
@@ -156,22 +156,22 @@ function ProductsPage() {
 
             {/* Top questions */}
             <div className="mt-6">
-              <p className="text-xs font-medium text-zinc-700 mb-3">
+              <p className="text-xs font-medium text-foreground mb-3">
                 Most-asked questions
               </p>
               <ol className="space-y-2">
                 {TOP_QUESTIONS.map((t, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-3 rounded-lg border border-border bg-white p-3"
+                    className="flex items-start gap-3 rounded-lg border border-border bg-white dark:bg-zinc-900 p-3"
                   >
-                    <span className="text-[10px] font-mono text-purple-700 mt-0.5">
+                    <span className="text-[10px] font-mono text-purple-700 dark:text-purple-400 mt-0.5">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="flex-1 text-xs text-zinc-700 leading-relaxed">
+                    <span className="flex-1 text-xs text-foreground leading-relaxed">
                       "{t.q}"
                     </span>
-                    <span className="text-[10px] font-mono text-zinc-400 shrink-0">
+                    <span className="text-[10px] font-mono text-muted-foreground shrink-0">
                       ×{t.n}
                     </span>
                   </li>
@@ -188,10 +188,10 @@ function ProductsPage() {
       {/* Coming soon */}
       <div className="max-w-6xl mx-auto mt-8">
         <article className="rounded-3xl border border-dashed border-border bg-muted/20 p-8 sm:p-10 text-center">
-          <span className="inline-block rounded-full border border-border bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+          <span className="inline-block rounded-full border border-border bg-white dark:bg-zinc-900 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
             Coming soon
           </span>
-          <h3 className="mt-4 text-xl sm:text-2xl font-semibold tracking-tight text-zinc-700">
+          <h3 className="mt-4 text-xl sm:text-2xl font-semibold tracking-tight text-foreground">
             The next Retriive platform is in development
           </h3>
           <p className="mt-2 text-sm text-muted-foreground max-w-md mx-auto">
@@ -200,7 +200,7 @@ function ProductsPage() {
           </p>
           <Link
             to="/contact"
-            className="mt-5 inline-block rounded-md border border-border bg-white px-5 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700"
+            className="mt-5 inline-block rounded-md border border-border bg-white dark:bg-zinc-900 px-5 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700 dark:hover:border-purple-400 dark:hover:text-purple-400"
           >
             Get in touch
           </Link>
@@ -215,21 +215,21 @@ function WhyThisMatters() {
     <section className="max-w-6xl mx-auto mt-8">
       <div className="rounded-3xl border border-border bg-card overflow-hidden">
         {/* Header */}
-        <div className="p-8 sm:p-10 border-b border-border bg-gradient-to-br from-amber-50 to-white">
+        <div className="p-8 sm:p-10 border-b border-border bg-gradient-to-br from-amber-50 to-white dark:from-amber-950/30 dark:to-card">
           <span className="inline-block rounded-full border border-amber-300/60 bg-amber-100/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-700">
             Why this matters
           </span>
-          <h3 className="mt-4 text-2xl sm:text-3xl font-bold tracking-[-0.03em] text-zinc-900 max-w-2xl">
+          <h3 className="mt-4 text-2xl sm:text-3xl font-bold tracking-[-0.03em] text-foreground max-w-2xl">
             Right now, Google's #1 answer to a Carleton student is{" "}
             <span className="text-amber-600">seven years out of date.</span>
           </h3>
           <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl">
             We searched a routine question every student asks —{" "}
-            <span className="font-medium text-zinc-700">
+            <span className="font-medium text-foreground">
               "What CGPA do I need to stay in good standing?"
             </span>{" "}
             — and the top result was an{" "}
-            <span className="font-medium text-zinc-700">
+            <span className="font-medium text-foreground">
               archived 2017–2018 calendar page
             </span>
             . The only warning is a banner you have to scroll back up to notice.
@@ -244,28 +244,28 @@ function WhyThisMatters() {
           <div className="p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-border">
             <div className="flex items-center gap-2 mb-4">
               <span className="inline-flex h-2 w-2 rounded-full bg-amber-500" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                 Google · Top result today
               </span>
             </div>
 
             {/* Fake SERP entry */}
-            <div className="rounded-xl border border-border bg-white p-4">
-              <p className="text-xs text-emerald-700 truncate">
+            <div className="rounded-xl border border-border bg-white dark:bg-zinc-900 p-4">
+              <p className="text-xs text-emerald-700 dark:text-emerald-400 truncate">
                 calendar.carleton.ca › calendars › 2017-2018 › undergrad
               </p>
-              <p className="mt-1 text-base font-medium text-[#1a0dab] leading-snug">
+              <p className="mt-1 text-base font-medium text-[#1a0dab] dark:text-[#8ab4f8] leading-snug">
                 Academic Performance Evaluation – Carleton University
               </p>
-              <p className="mt-1 text-xs text-zinc-500 leading-relaxed">
+              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
                 7.1 Academic Performance Evaluation for Degree Students. The
                 annual assessment of the student's status in his or her degree…
               </p>
             </div>
 
             {/* The buried archived banner */}
-            <div className="mt-3 rounded-lg border border-amber-300/70 bg-amber-50 p-3">
-              <p className="text-xs text-amber-800 leading-relaxed">
+            <div className="mt-3 rounded-lg border border-amber-300/70 dark:border-amber-500/30 bg-amber-50 dark:bg-amber-950/30 p-3">
+              <p className="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">
                 ⚠ "This is an archived copy of the{" "}
                 <span className="font-semibold">2017–2018 catalog</span>. To
                 access the most recent version of the catalog, please visit
@@ -279,24 +279,24 @@ function WhyThisMatters() {
           </div>
 
           {/* Right: CampusQ grounded answer */}
-          <div className="p-6 sm:p-8 bg-zinc-50/50">
+          <div className="p-6 sm:p-8 bg-muted/40">
             <div className="flex items-center gap-2 mb-4">
               <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
                 CampusQ · Same question
               </span>
             </div>
 
             {/* Question bubble */}
-            <div className="rounded-xl rounded-br-sm border border-border bg-white px-4 py-3 ml-8">
-              <p className="text-xs text-zinc-700">
+            <div className="rounded-xl rounded-br-sm border border-border bg-white dark:bg-zinc-900 px-4 py-3 ml-8">
+              <p className="text-xs text-foreground">
                 What CGPA do I need to stay in good standing?
               </p>
             </div>
 
             {/* Answer bubble */}
-            <div className="mt-3 rounded-xl rounded-bl-sm border border-purple-700/20 bg-white px-4 py-3 mr-8 shadow-sm">
-              <p className="text-xs text-zinc-700 leading-relaxed">
+            <div className="mt-3 rounded-xl rounded-bl-sm border border-purple-700/20 dark:border-purple-400/25 bg-white dark:bg-zinc-900 px-4 py-3 mr-8 shadow-sm">
+              <p className="text-xs text-foreground leading-relaxed">
                 You're in <span className="font-medium">Good Standing</span> when
                 your CGPA meets the threshold for your year and program, as set
                 out in the University's current Academic Performance Evaluation
@@ -304,11 +304,11 @@ function WhyThisMatters() {
                 Suspension.
               </p>
               <div className="mt-3 flex items-center gap-2 border-t border-border pt-2">
-                <span className="inline-flex items-center gap-1 rounded-full bg-brand-soft px-2 py-0.5 text-[10px] font-medium text-purple-700">
-                  <span className="h-1.5 w-1.5 rounded-full bg-purple-700" />
+                <span className="inline-flex items-center gap-1 rounded-full bg-brand-soft px-2 py-0.5 text-[10px] font-medium text-purple-700 dark:text-purple-300">
+                  <span className="h-1.5 w-1.5 rounded-full bg-purple-700 dark:bg-purple-400" />
                   Source: Academic Regulations 7.1
                 </span>
-                <span className="text-[10px] font-mono text-emerald-600">
+                <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400">
                   current calendar · verified
                 </span>
               </div>
@@ -321,10 +321,10 @@ function WhyThisMatters() {
         </div>
 
         {/* Footer takeaway */}
-        <div className="px-8 sm:px-10 py-6 border-t border-border bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <p className="text-sm text-zinc-700 max-w-2xl">
+        <div className="px-8 sm:px-10 py-6 border-t border-border bg-white dark:bg-zinc-900 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <p className="text-sm text-foreground max-w-2xl">
             Students already ask CampusQ this — "Academic Regulations & GPA" is a{" "}
-            <span className="font-semibold text-purple-700">top-asked category</span>
+            <span className="font-semibold text-purple-700 dark:text-purple-400">top-asked category</span>
             . The difference is whether the answer comes from a forgotten 2017
             page or your current, cited policy.
           </p>
@@ -342,8 +342,8 @@ function WhyThisMatters() {
 
 function Stat({ value, label }: { value: string; label: string }) {
   return (
-    <div className="rounded-xl border border-border bg-white p-3 sm:p-4">
-      <div className="text-xl sm:text-2xl font-bold tracking-tight text-purple-700">
+    <div className="rounded-xl border border-border bg-white dark:bg-zinc-900 p-3 sm:p-4">
+      <div className="text-xl sm:text-2xl font-bold tracking-tight text-purple-700 dark:text-purple-400">
         {value}
       </div>
       <div className="mt-1 text-[10px] sm:text-xs text-muted-foreground leading-snug">

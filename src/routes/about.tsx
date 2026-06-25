@@ -28,7 +28,7 @@ function AboutPage() {
       <section className="px-4 sm:px-8 lg:px-16 py-16 sm:py-20 lg:py-28">
         <div className="max-w-4xl mx-auto">
           <p className="text-sm font-medium text-brand">About Retriive</p>
-          <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 leading-tight">
+          <h1 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground leading-tight">
             Building the AI layer for the institutions of tomorrow.
           </h1>
           <div className="mt-8 space-y-6 text-base sm:text-lg text-muted-foreground leading-relaxed">
@@ -73,9 +73,9 @@ function AboutPage() {
             ].map((v) => (
               <div
                 key={v.title}
-                className="rounded-2xl border border-border bg-card p-6 transition-colors duration-500 ease-in-out hover:border-purple-700"
+                className="rounded-2xl border border-border bg-card p-6 transition-colors duration-500 ease-in-out hover:border-purple-700 dark:hover:border-purple-400"
               >
-                <h3 className="text-base font-semibold text-zinc-900">
+                <h3 className="text-base font-semibold text-foreground">
                   {v.title}
                 </h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
@@ -103,7 +103,7 @@ function AboutPage() {
           {TEAM.map((m) => (
             <div
               key={m.name}
-              className="rounded-2xl border border-border bg-card p-8 text-center transition-colors duration-500 ease-in-out hover:border-purple-700 hover:shadow-md"
+              className="rounded-2xl border border-border bg-card p-8 text-center transition-colors duration-500 ease-in-out hover:border-purple-700 dark:hover:border-purple-400 hover:shadow-md"
             >
               <div
                 className="mx-auto h-24 w-24 rounded-full flex items-center justify-center text-2xl font-semibold text-brand-foreground"
