@@ -12,7 +12,7 @@ export function SiteFooter() {
 
         <div className="col-span-2 md:col-span-2">
           <div className="text-xl font-semibold tracking-tight">
-            Retriive<span className="text-brand"> Inc.</span>
+            Retriive
           </div>
           <p className="mt-3 text-sm text-muted-foreground max-w-sm">
             Intelligent AI solutions for modern institutions.
