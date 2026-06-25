@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { seo } from "../lib/seo";
+import { Reveal } from "../components/reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -65,7 +66,7 @@ function Home() {
           />
           <button
             type="submit"
-            className="rounded-md bg-brand px-6 py-3 text-sm font-medium text-brand-foreground shadow-lg shadow-purple-700/40 animate-pulse-glow transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-purple-800 hover:shadow-purple-700/60"
+            className="rounded-md bg-brand px-6 py-3 text-sm font-medium text-brand-foreground shadow-lg shadow-purple-700/40 animate-pulse-glow transition-[transform,background-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:bg-purple-800 hover:shadow-purple-700/60 active:translate-y-0 active:scale-[0.97]"
           >
             Book a 20-min demo
           </button>
@@ -134,21 +135,20 @@ function FeaturesSection() {
         </div>
 
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {features.map((f) => (
-            <div
-              key={f.title}
-              className="group rounded-2xl border border-border bg-white dark:bg-zinc-950 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-700/40 dark:hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-700/10 dark:hover:shadow-purple-500/20"
-            >
-              <div className="h-9 w-9 rounded-lg bg-brand-soft flex items-center justify-center">
-                <span className="h-2 w-2 rounded-full bg-purple-700 dark:bg-purple-400" />
+          {features.map((f, i) => (
+            <Reveal key={f.title} delay={(i % 3) * 70}>
+              <div className="group h-full rounded-2xl border border-border bg-white dark:bg-zinc-950 p-6 transition-[transform,border-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:border-purple-700/40 dark:hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-700/10 dark:hover:shadow-purple-500/20">
+                <div className="h-9 w-9 rounded-lg bg-brand-soft flex items-center justify-center transition-transform duration-300 ease-out-strong group-hover:scale-110">
+                  <span className="h-2 w-2 rounded-full bg-purple-700 dark:bg-purple-400" />
+                </div>
+                <h3 className="mt-4 text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">
+                  {f.title}
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  {f.body}
+                </p>
               </div>
-              <h3 className="mt-4 text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">
-                {f.title}
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                {f.body}
-              </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -189,8 +189,8 @@ function HowItWorksSection() {
 
         <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 relative">
           {steps.map((s, i) => (
-            <div key={s.n} className="relative">
-              <div className="rounded-2xl border border-border bg-white dark:bg-black p-6 h-full">
+            <Reveal key={s.n} delay={i * 80} className="relative">
+              <div className="group rounded-2xl border border-border bg-white dark:bg-black p-6 h-full transition-[transform,border-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:border-purple-700/40 dark:hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-700/10 dark:hover:shadow-purple-500/20">
                 <div className="text-xs font-mono text-purple-700 dark:text-purple-400">{s.n}</div>
                 <h3 className="mt-3 text-xl font-semibold tracking-tight text-zinc-900 dark:text-white">
                   {s.title}
@@ -202,7 +202,7 @@ function HowItWorksSection() {
               {i < steps.length - 1 && (
                 <div className="hidden md:block absolute top-1/2 -right-2 h-px w-4 bg-border" />
               )}
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -220,15 +220,15 @@ function StatsSection() {
   return (
     <section className="relative px-4 sm:px-8 lg:px-16 py-16 sm:py-20 bg-white dark:bg-black">
       <div className="mx-auto max-w-6xl grid grid-cols-2 md:grid-cols-4 gap-6">
-        {stats.map((s) => (
-          <div key={s.l} className="text-center md:text-left">
+        {stats.map((s, i) => (
+          <Reveal key={s.l} delay={i * 60} className="text-center md:text-left">
             <div className="text-3xl sm:text-4xl font-bold tracking-[-0.03em] text-purple-700 dark:text-purple-400">
               {s.v}
             </div>
             <div className="mt-1 text-xs sm:text-sm text-muted-foreground">
               {s.l}
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>
@@ -265,21 +265,20 @@ function UseCasesSection() {
           </h2>
         </div>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5">
-          {cases.map((c) => (
-            <div
-              key={c.title}
-              className="rounded-2xl border border-border bg-white dark:bg-black p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-700/40 dark:hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-700/10 dark:hover:shadow-purple-500/20"
-            >
-              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-purple-700 dark:text-purple-400">
-                {c.tag}
-              </span>
-              <h3 className="mt-3 text-xl font-semibold tracking-tight text-zinc-900 dark:text-white">
-                {c.title}
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                {c.body}
-              </p>
-            </div>
+          {cases.map((c, i) => (
+            <Reveal key={c.title} delay={i * 80}>
+              <div className="h-full rounded-2xl border border-border bg-white dark:bg-black p-6 transition-[transform,border-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:border-purple-700/40 dark:hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-700/10 dark:hover:shadow-purple-500/20">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-purple-700 dark:text-purple-400">
+                  {c.tag}
+                </span>
+                <h3 className="mt-3 text-xl font-semibold tracking-tight text-zinc-900 dark:text-white">
+                  {c.title}
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  {c.body}
+                </p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -305,13 +304,13 @@ function CtaSection() {
         <div className="relative mt-8 flex flex-wrap justify-center gap-4">
           <Link
             to="/contact"
-            className="rounded-md bg-brand px-7 py-3 text-sm font-medium text-brand-foreground shadow-lg shadow-purple-700/40 transition-all duration-300 hover:-translate-y-1 hover:bg-purple-800 hover:shadow-purple-700/60"
+            className="rounded-md bg-brand px-7 py-3 text-sm font-medium text-brand-foreground shadow-lg shadow-purple-700/40 transition-[transform,background-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:bg-purple-800 hover:shadow-purple-700/60 active:translate-y-0 active:scale-[0.97]"
           >
             Book a 20-min demo
           </Link>
           <Link
             to="/products"
-            className="rounded-md border border-border bg-white dark:bg-zinc-950 px-7 py-3 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700 dark:hover:border-purple-400 dark:hover:text-purple-400"
+            className="rounded-md border border-border bg-white dark:bg-zinc-950 px-7 py-3 text-sm font-medium text-foreground transition-[transform,border-color,color] duration-300 ease-out-strong hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700 dark:hover:border-purple-400 dark:hover:text-purple-400 active:translate-y-0 active:scale-[0.97]"
           >
             See how it works
           </Link>

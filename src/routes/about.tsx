@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { seo } from "../lib/seo";
+import { Reveal } from "../components/reveal";
 
 const TEAM = [
   { name: "Mahad Mohamed Yonis", role: "CEO", initials: "MY" },
@@ -70,18 +71,17 @@ function AboutPage() {
                 title: "Human-first",
                 body: "We design for the people who use our tools every day, not just the dashboards.",
               },
-            ].map((v) => (
-              <div
-                key={v.title}
-                className="rounded-2xl border border-border bg-card p-6 transition-colors duration-500 ease-in-out hover:border-purple-700 dark:hover:border-purple-400"
-              >
-                <h3 className="text-base font-semibold text-foreground">
-                  {v.title}
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  {v.body}
-                </p>
-              </div>
+            ].map((v, i) => (
+              <Reveal key={v.title} delay={i * 70}>
+                <div className="h-full rounded-2xl border border-border bg-card p-6 transition-[transform,border-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:border-purple-700 dark:hover:border-purple-400 hover:shadow-lg hover:shadow-purple-700/10 dark:hover:shadow-purple-500/20">
+                  <h3 className="text-base font-semibold text-foreground">
+                    {v.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                    {v.body}
+                  </p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -100,23 +100,22 @@ function AboutPage() {
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {TEAM.map((m) => (
-            <div
-              key={m.name}
-              className="rounded-2xl border border-border bg-card p-8 text-center transition-colors duration-500 ease-in-out hover:border-purple-700 dark:hover:border-purple-400 hover:shadow-md"
-            >
-              <div
-                className="mx-auto h-24 w-24 rounded-full flex items-center justify-center text-2xl font-semibold text-brand-foreground"
-                style={{
-                  background:
-                    "linear-gradient(135deg, var(--brand), color-mix(in oklch, var(--brand) 60%, white))",
-                }}
-              >
-                {m.initials}
+          {TEAM.map((m, i) => (
+            <Reveal key={m.name} delay={i * 70}>
+              <div className="group h-full rounded-2xl border border-border bg-card p-8 text-center transition-[transform,border-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:border-purple-700 dark:hover:border-purple-400 hover:shadow-lg hover:shadow-purple-700/10 dark:hover:shadow-purple-500/20">
+                <div
+                  className="mx-auto h-24 w-24 rounded-full flex items-center justify-center text-2xl font-semibold text-brand-foreground transition-transform duration-300 ease-out-strong group-hover:scale-105"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, var(--brand), color-mix(in oklch, var(--brand) 60%, white))",
+                  }}
+                >
+                  {m.initials}
+                </div>
+                <h3 className="mt-6 text-lg font-semibold">{m.name}</h3>
+                <p className="mt-1 text-sm text-brand font-medium">{m.role}</p>
               </div>
-              <h3 className="mt-6 text-lg font-semibold">{m.name}</h3>
-              <p className="mt-1 text-sm text-brand font-medium">{m.role}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CAMPUSQ_URL } from "@/lib/external-links";
 import { seo } from "../lib/seo";
+import { Reveal } from "../components/reveal";
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -54,7 +55,8 @@ function ProductsPage() {
       </div>
 
       {/* Featured: CampusQ */}
-      <article className="max-w-6xl mx-auto rounded-3xl border border-border bg-card overflow-hidden shadow-sm">
+      <Reveal className="max-w-6xl mx-auto">
+      <article className="rounded-3xl border border-border bg-card overflow-hidden shadow-sm">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
           {/* Left: identity + CTA */}
           <div className="lg:col-span-2 p-8 sm:p-10 border-b lg:border-b-0 lg:border-r border-border bg-gradient-to-br from-brand-soft to-white dark:to-card flex flex-col">
@@ -78,13 +80,13 @@ function ProductsPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href={CAMPUSQ_URL}
-                className="rounded-md bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground shadow-md shadow-purple-700/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-purple-800"
+                className="rounded-md bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground shadow-md shadow-purple-700/30 transition-[transform,background-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-0.5 hover:bg-purple-800 active:translate-y-0 active:scale-[0.97]"
               >
                 Open CampusQ →
               </a>
               <Link
                 to="/contact"
-                className="rounded-md border border-border bg-white dark:bg-zinc-900 px-5 py-2.5 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700 dark:hover:border-purple-400 dark:hover:text-purple-400"
+                className="rounded-md border border-border bg-white dark:bg-zinc-900 px-5 py-2.5 text-sm font-medium text-foreground transition-[transform,border-color,color] duration-300 ease-out-strong hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700 dark:hover:border-purple-400 dark:hover:text-purple-400 active:translate-y-0 active:scale-[0.97]"
               >
                 Pilot at your school
               </Link>
@@ -181,12 +183,13 @@ function ProductsPage() {
           </div>
         </div>
       </article>
+      </Reveal>
 
       {/* Why this matters — stale Google result vs grounded answer */}
       <WhyThisMatters />
 
       {/* Coming soon */}
-      <div className="max-w-6xl mx-auto mt-8">
+      <Reveal className="max-w-6xl mx-auto mt-8">
         <article className="rounded-3xl border border-dashed border-border bg-muted/20 p-8 sm:p-10 text-center">
           <span className="inline-block rounded-full border border-border bg-white dark:bg-zinc-900 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
             Coming soon
@@ -200,12 +203,12 @@ function ProductsPage() {
           </p>
           <Link
             to="/contact"
-            className="mt-5 inline-block rounded-md border border-border bg-white dark:bg-zinc-900 px-5 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700 dark:hover:border-purple-400 dark:hover:text-purple-400"
+            className="mt-5 inline-block rounded-md border border-border bg-white dark:bg-zinc-900 px-5 py-2 text-sm font-medium text-foreground transition-[transform,border-color,color] duration-300 ease-out-strong hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700 dark:hover:border-purple-400 dark:hover:text-purple-400 active:translate-y-0 active:scale-[0.97]"
           >
             Get in touch
           </Link>
         </article>
-      </div>
+      </Reveal>
     </section>
   );
 }
@@ -213,6 +216,7 @@ function ProductsPage() {
 function WhyThisMatters() {
   return (
     <section className="max-w-6xl mx-auto mt-8">
+      <Reveal>
       <div className="rounded-3xl border border-border bg-card overflow-hidden">
         {/* Header */}
         <div className="p-8 sm:p-10 border-b border-border bg-gradient-to-br from-amber-50 to-white dark:from-amber-950/30 dark:to-card">
@@ -330,12 +334,13 @@ function WhyThisMatters() {
           </p>
           <Link
             to="/contact"
-            className="shrink-0 rounded-md bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground shadow-md shadow-purple-700/30 transition-all duration-300 hover:-translate-y-0.5 hover:bg-purple-800"
+            className="shrink-0 rounded-md bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground shadow-md shadow-purple-700/30 transition-[transform,background-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-0.5 hover:bg-purple-800 active:translate-y-0 active:scale-[0.97]"
           >
             Bring CampusQ to your school →
           </Link>
         </div>
       </div>
+      </Reveal>
     </section>
   );
 }

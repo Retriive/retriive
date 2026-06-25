@@ -22,6 +22,12 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-wordmark: "Quicksand", ui-sans-serif, system-ui, sans-serif;
   --animate-pulse-glow: pulse-glow 2.4s ease-in-out infinite;
+
+  /* Custom easing curves — the built-in CSS easings lack punch.
+     Exposed as Tailwind utilities: ease-out-strong, ease-in-out-strong, ease-drawer. */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -172,5 +178,102 @@
   }
   50% {
     box-shadow: 0 0 0 8px rgb(126 34 206 / 0), 0 18px 40px -10px rgb(126 34 206 / 0.7);
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scaleY(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Theme switching
+ * ------------------------------------------------------------------ */
+
+/*
+ * Coordinated crossfade — applied to <html> only for the brief moment a
+ * theme toggle happens, so every color crosses together at one speed.
+ * Used as the fallback when the View Transitions API is unavailable.
+ * Outside this window, color changes (hovers, focus) keep their own
+ * per-element timing.
+ */
+.theme-transition,
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease,
+    fill 200ms ease,
+    stroke 200ms ease,
+    box-shadow 200ms ease !important;
+  transition-delay: 0ms !important;
+}
+
+/*
+ * View Transitions API — we drive the reveal ourselves with an expanding
+ * clip-path circle (see theme-toggle.tsx), so the default root crossfade
+ * is disabled and the new theme is layered on top to wipe over the old.
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Scroll-reveal — entrance for content below the fold
+ * ------------------------------------------------------------------ */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 600ms var(--ease-out-strong),
+    transform 600ms var(--ease-out-strong);
+  will-change: opacity, transform;
+}
+
+[data-reveal][data-shown="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Reduced motion — keep opacity/color, drop movement
+ * ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Reveal without the slide */
+  [data-reveal] {
+    transform: none;
+    transition: opacity 300ms ease;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
   }
 }
