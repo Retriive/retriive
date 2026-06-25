@@ -20,9 +20,9 @@ export function SiteHeader() {
         <Link
           to="/"
           onClick={() => setOpen(false)}
-          className="text-lg sm:text-xl font-semibold tracking-tight shrink-0"
+          className="font-wordmark text-xl sm:text-2xl font-semibold tracking-tight shrink-0 lowercase"
         >
-          Retriive
+          retriive
         </Link>
 
         <nav className="hidden md:flex items-center gap-10 text-sm font-medium text-muted-foreground">

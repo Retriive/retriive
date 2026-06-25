@@ -11,8 +11,8 @@ export function SiteFooter() {
       <div className="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-10">
 
         <div className="col-span-2 md:col-span-2">
-          <div className="text-xl font-semibold tracking-tight">
-            Retriive
+          <div className="font-wordmark text-2xl font-semibold tracking-tight lowercase">
+            retriive
           </div>
           <p className="mt-3 text-sm text-muted-foreground max-w-sm">
             Intelligent AI solutions for modern institutions.
