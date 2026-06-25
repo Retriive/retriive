@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { seo } from "../lib/seo";
+import { Reveal } from "../components/reveal";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -47,6 +48,7 @@ function ContactPage() {
           .
         </p>
 
+        <Reveal>
         <form
           onSubmit={onSubmit}
           className="mt-10 flex flex-col gap-5 rounded-2xl border border-border/60 bg-background/80 backdrop-blur p-6 sm:p-8"
@@ -62,7 +64,7 @@ function ContactPage() {
               maxLength={100}
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="rounded-md border border-border bg-background px-4 py-2.5 text-sm outline-none transition-colors focus:border-purple-700"
+              className="rounded-md border border-border bg-background px-4 py-2.5 text-sm outline-none transition-[border-color,box-shadow] duration-200 ease-out focus:border-purple-700 focus:ring-2 focus:ring-purple-500/25"
             />
           </div>
 
@@ -77,7 +79,7 @@ function ContactPage() {
               maxLength={255}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="rounded-md border border-border bg-background px-4 py-2.5 text-sm outline-none transition-colors focus:border-purple-700"
+              className="rounded-md border border-border bg-background px-4 py-2.5 text-sm outline-none transition-[border-color,box-shadow] duration-200 ease-out focus:border-purple-700 focus:ring-2 focus:ring-purple-500/25"
             />
           </div>
 
@@ -95,17 +97,18 @@ function ContactPage() {
               rows={6}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="rounded-md border border-border bg-background px-4 py-2.5 text-sm outline-none transition-colors focus:border-purple-700 resize-y"
+              className="rounded-md border border-border bg-background px-4 py-2.5 text-sm outline-none transition-[border-color,box-shadow] duration-200 ease-out focus:border-purple-700 focus:ring-2 focus:ring-purple-500/25 resize-y"
             />
           </div>
 
           <button
             type="submit"
-            className="self-start rounded-md bg-brand px-6 py-2.5 text-sm font-medium text-brand-foreground transition-colors duration-500 ease-in-out hover:bg-purple-800"
+            className="self-start rounded-md bg-brand px-6 py-2.5 text-sm font-medium text-brand-foreground transition-[background-color,transform] duration-200 ease-out hover:bg-purple-800 active:scale-[0.97]"
           >
             Send message
           </button>
         </form>
+        </Reveal>
       </div>
     </section>
   );

@@ -32,7 +32,7 @@ export function SiteHeader() {
               to={n.to}
               activeOptions={{ exact: true }}
               activeProps={{ className: "text-purple-700 dark:text-purple-400" }}
-              className="transition-colors duration-500 ease-in-out hover:text-purple-700 dark:hover:text-purple-400"
+              className="transition-colors duration-200 ease-out hover:text-purple-700 dark:hover:text-purple-400"
             >
               {n.label}
             </Link>
@@ -43,7 +43,7 @@ export function SiteHeader() {
           <ThemeToggle />
           <a
             href={CAMPUSQ_URL}
-            className="hidden sm:inline-flex rounded-md bg-brand px-4 sm:px-5 py-2 text-sm font-medium text-brand-foreground transition-colors duration-500 ease-in-out hover:bg-purple-800"
+            className="hidden sm:inline-flex rounded-md bg-brand px-4 sm:px-5 py-2 text-sm font-medium text-brand-foreground transition-[background-color,transform] duration-200 ease-out hover:bg-purple-800 active:scale-[0.97]"
           >
             Login
           </a>
@@ -60,7 +60,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-border/60 px-4 py-4 flex flex-col gap-1">
+        <div className="md:hidden border-t border-border/60 px-4 py-4 flex flex-col gap-1 origin-top animate-[menu-in_200ms_var(--ease-out-strong)]">
           {NAV.map((n) => (
             <Link
               key={n.to}
@@ -68,14 +68,14 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               activeOptions={{ exact: true }}
               activeProps={{ className: "text-purple-700 dark:text-purple-300 bg-brand-soft" }}
-              className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors duration-300 hover:text-purple-700 dark:hover:text-purple-300 hover:bg-brand-soft"
+              className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors duration-200 ease-out hover:text-purple-700 dark:hover:text-purple-300 hover:bg-brand-soft"
             >
               {n.label}
             </Link>
           ))}
           <a
             href={CAMPUSQ_URL}
-            className="mt-2 sm:hidden rounded-md bg-brand px-4 py-2 text-sm font-medium text-brand-foreground transition-colors duration-500 ease-in-out hover:bg-purple-800"
+            className="mt-2 sm:hidden rounded-md bg-brand px-4 py-2 text-sm font-medium text-brand-foreground transition-[background-color,transform] duration-200 ease-out hover:bg-purple-800 active:scale-[0.97]"
           >
             Login
           </a>
