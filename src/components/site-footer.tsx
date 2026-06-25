@@ -30,7 +30,7 @@ export function SiteFooter() {
                 <li key={l}>
                   <a
                     href={FOOTER_LINK_HREFS[l] ?? "#"}
-                    className="transition-colors duration-500 ease-in-out hover:text-purple-700"
+                    className="transition-colors duration-500 ease-in-out hover:text-purple-400"
                   >
                     {l}
                   </a>
@@ -42,9 +42,9 @@ export function SiteFooter() {
         <div>
           <h4 className="text-sm font-semibold">Links</h4>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><a href="#" className="transition-colors duration-500 ease-in-out hover:text-purple-700">Privacy</a></li>
-            <li><a href="#" className="transition-colors duration-500 ease-in-out hover:text-purple-700">Terms</a></li>
-            <li><a href="#" className="transition-colors duration-500 ease-in-out hover:text-purple-700">Security</a></li>
+            <li><a href="#" className="transition-colors duration-500 ease-in-out hover:text-purple-400">Privacy</a></li>
+            <li><a href="#" className="transition-colors duration-500 ease-in-out hover:text-purple-400">Terms</a></li>
+            <li><a href="#" className="transition-colors duration-500 ease-in-out hover:text-purple-400">Security</a></li>
           </ul>
         </div>
       </div>
