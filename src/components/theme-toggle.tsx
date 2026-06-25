@@ -89,7 +89,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="inline-flex items-center justify-center rounded-md border border-border p-2 text-foreground transition-[color,border-color,transform] duration-200 ease-out hover:border-purple-700 hover:text-purple-700 active:scale-[0.92] dark:hover:border-purple-400 dark:hover:text-purple-400"
+      className="grid place-items-center rounded-lg border border-border p-2 text-foreground transition-[color,border-color,transform] duration-200 ease-out hover:border-brand hover:text-brand active:scale-[0.92]"
     >
       {/* Icons are driven by the `.dark` class, so they stay in sync with the
           theme with no JS and cross-rotate as it changes. */}

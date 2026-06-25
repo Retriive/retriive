@@ -1,232 +1,186 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  ShieldCheck,
+  Database,
+  Plug,
+  Languages,
+  BarChart3,
+  Lock,
+} from "lucide-react";
 import { seo } from "../lib/seo";
+import { CAMPUSQ_URL } from "@/lib/external-links";
 import { Reveal } from "../components/reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     ...seo({
-      title: "Retriive Inc. — Answer any policy question in seconds",
+      title: "Retriive — Answers your institution can actually trust",
       description:
-        "Retriive indexes your handbooks, SOPs, and internal records into one AI search bar — every answer comes back with the exact cited source, paragraph, and page.",
+        "Retriive turns your handbooks, policies, and records into one search bar — every answer comes back with the exact source, paragraph, and page it came from.",
       path: "/",
     }),
   }),
-
   component: Home,
 });
 
 function Home() {
   return (
     <>
-    <section className="relative px-4 sm:px-8 lg:px-16 py-20 sm:py-28 lg:py-40 text-center overflow-hidden">
-      {/* Faint dot-grid background */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-20 [background-image:radial-gradient(rgb(0_0_0/0.07)_1px,transparent_1px)] dark:[background-image:radial-gradient(rgb(255_255_255/0.06)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_at_center,black_55%,transparent_85%)]"
-      />
-
-      {/* Animated mesh-gradient backdrop */}
-      <MeshGradient />
-
-      {/* Floating glass UI cards */}
-      <FloatingCards />
-
-      <div className="relative mx-auto max-w-5xl">
-        <span className="inline-block rounded-full border border-brand/30 bg-brand-soft px-4 py-1 text-xs font-medium text-brand">
-          For university operations & student-services teams
-        </span>
-        <h1 className="mt-6 text-4xl sm:text-5xl md:text-7xl font-bold tracking-[-0.035em] leading-[1.05] text-zinc-900 dark:text-white">
-          Answer any policy question{" "}
-          <span className="text-purple-700 dark:text-purple-400 transition-colors duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
-            in seconds, not hours.
-          </span>
-        </h1>
-
-        <p className="mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed mx-auto max-w-2xl">
-          Retriive indexes your handbooks, SOPs, and internal records into one
-          AI search bar — every answer comes back with the exact source,
-          paragraph, and page it came from.
-        </p>
-
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const data = new FormData(e.currentTarget);
-            const email = String(data.get("email") || "");
-            window.location.href = `/contact?email=${encodeURIComponent(email)}`;
-          }}
-          className="mt-10 mx-auto flex w-full max-w-md flex-col sm:flex-row gap-3"
-        >
-          <input
-            type="email"
-            name="email"
-            required
-            placeholder="you@institution.edu"
-            className="flex-1 rounded-md border border-border bg-white dark:bg-zinc-900 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-purple-600 focus:ring-2 focus:ring-purple-500/30"
-          />
-          <button
-            type="submit"
-            className="rounded-md bg-brand px-6 py-3 text-sm font-medium text-brand-foreground shadow-lg shadow-purple-700/40 animate-pulse-glow transition-[transform,background-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:bg-purple-800 hover:shadow-purple-700/60 active:translate-y-0 active:scale-[0.97]"
-          >
-            Book a 20-min demo
-          </button>
-        </form>
-        <p className="mt-3 text-xs text-muted-foreground">
-          Free pilot · No credit card · We reply within 1 business day
-        </p>
-
-
-
-      </div>
-    </section>
-
-      <FeaturesSection />
-      <HowItWorksSection />
-      <StatsSection />
-      <UseCasesSection />
-      <CtaSection />
+      <Hero />
+      <CredibilityBand />
+      <ProblemSection />
+      <HowItWorks />
+      <Features />
+      <Stats />
+      <FinalCta />
     </>
   );
 }
 
-function FeaturesSection() {
-  const features = [
-    {
-      title: "Retrieval-grounded answers",
-      body: "Every response is anchored to your institution's documents, with inline citations and traceable sources — no hallucinations, no guesswork.",
-    },
-    {
-      title: "Private by design",
-      body: "Your data stays in your environment. Role-based access, audit logs, and encryption at rest keep sensitive records protected end-to-end.",
-    },
-    {
-      title: "Built for scale",
-      body: "From a single department to a multi-campus deployment, Retriive handles millions of documents with sub-second retrieval latency.",
-    },
-    {
-      title: "Connects to what you use",
-      body: "Native integrations with SharePoint, Google Drive, Notion, Confluence, SIS, and SQL — index once, query anywhere.",
-    },
-    {
-      title: "Multilingual & domain-tuned",
-      body: "Fine-tuned for the vocabulary of education, healthcare, and government — including Arabic and English by default.",
-    },
-    {
-      title: "Observable & governed",
-      body: "Dashboards for query volume, satisfaction, and source coverage. Admin controls for redaction and content policies.",
-    },
-  ];
+/* ------------------------------------------------------------------ */
 
+function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <section className="relative px-4 sm:px-8 lg:px-16 py-20 sm:py-28 bg-white dark:bg-black">
-      <div className="mx-auto max-w-6xl">
-        <div className="max-w-2xl">
-          <span className="inline-block rounded-full border border-brand/30 bg-brand-soft px-4 py-1 text-xs font-medium text-brand dark:text-purple-300">
-            Platform
-          </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] text-zinc-900 dark:text-white">
-            The AI layer your institution can actually trust.
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
-            Retriive combines retrieval-augmented generation with enterprise-grade
-            governance, so teams get instant answers without compromising on
-            accuracy or privacy.
+    <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-brand-muted">
+      <span className="h-1 w-1 rounded-full bg-brand" />
+      {children}
+    </span>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+
+function Hero() {
+  return (
+    <section className="relative overflow-hidden px-5 sm:px-8 lg:px-12">
+      {/* Backdrop */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-grid mask-fade-b opacity-70" />
+        <div className="absolute left-1/2 top-[-10%] h-[42rem] w-[42rem] -translate-x-1/2 glow animate-[float-soft_12s_ease-in-out_infinite]" />
+      </div>
+
+      <div className="mx-auto max-w-4xl pt-20 pb-16 text-center sm:pt-28 sm:pb-24">
+        <Reveal>
+          <Eyebrow>Retrieval-grounded AI</Eyebrow>
+        </Reveal>
+
+        <Reveal delay={60}>
+          <h1 className="font-display mt-6 text-5xl font-normal sm:text-6xl lg:text-[5rem]">
+            Answers your institution
+            <br className="hidden sm:block" /> can{" "}
+            <em className="text-brand">actually</em> trust.
+          </h1>
+        </Reveal>
+
+        <Reveal delay={120}>
+          <p className="mx-auto mt-7 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Retriive turns your handbooks, policies, and records into one search
+            bar — and every answer comes back with the exact source, paragraph,
+            and page it came from.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {features.map((f, i) => (
-            <Reveal key={f.title} delay={(i % 3) * 70}>
-              <div className="group h-full rounded-2xl border border-border bg-white dark:bg-zinc-950 p-6 transition-[transform,border-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:border-purple-700/40 dark:hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-700/10 dark:hover:shadow-purple-500/20">
-                <div className="h-9 w-9 rounded-lg bg-brand-soft flex items-center justify-center transition-transform duration-300 ease-out-strong group-hover:scale-110">
-                  <span className="h-2 w-2 rounded-full bg-purple-700 dark:bg-purple-400" />
-                </div>
-                <h3 className="mt-4 text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">
-                  {f.title}
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  {f.body}
-                </p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal delay={180}>
+          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              to="/contact"
+              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background shadow-lg shadow-black/10 transition-[transform,opacity] duration-200 ease-out-strong hover:opacity-90 active:scale-[0.97]"
+            >
+              Book a 20-min demo
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 ease-out-strong group-hover:translate-x-0.5" />
+            </Link>
+            <a
+              href={CAMPUSQ_URL}
+              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-6 py-3 text-sm font-medium text-foreground transition-[transform,border-color] duration-200 ease-out-strong hover:border-brand active:scale-[0.97]"
+            >
+              See it live
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
+        </Reveal>
+
+        <Reveal delay={260}>
+          <div className="mt-16">
+            <AnswerDemo />
+          </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-function HowItWorksSection() {
-  const steps = [
-    {
-      n: "01",
-      title: "Connect your sources",
-      body: "Plug in document stores, databases, and SaaS tools. Retriive indexes them securely without moving your data.",
-    },
-    {
-      n: "02",
-      title: "Ground the model",
-      body: "Our retrieval pipeline pulls the most relevant passages and feeds them to the model with citation metadata.",
-    },
-    {
-      n: "03",
-      title: "Answer with confidence",
-      body: "Users get sourced answers in chat, search, or embedded widgets. Admins see every query and citation.",
-    },
-  ];
-
+/* The product, demonstrated: a grounded answer with its citation. */
+function AnswerDemo() {
   return (
-    <section className="relative px-4 sm:px-8 lg:px-16 py-20 sm:py-28 bg-zinc-50 dark:bg-zinc-950 border-y border-border">
-      <div className="mx-auto max-w-6xl">
-        <div className="text-center max-w-2xl mx-auto">
-          <span className="inline-block rounded-full border border-brand/30 bg-brand-soft px-4 py-1 text-xs font-medium text-brand dark:text-purple-300">
-            How it works
+    <div className="mx-auto max-w-2xl text-left">
+      <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-black/[0.07] dark:shadow-black/40">
+        {/* Window chrome */}
+        <div className="flex items-center justify-between border-b border-hairline px-4 py-2.5">
+          <div className="flex items-center gap-2">
+            <span className="grid h-5 w-5 place-items-center rounded-md bg-brand text-[10px] font-semibold text-brand-foreground">
+              Q
+            </span>
+            <span className="font-mono text-[11px] tracking-tight text-muted-foreground">
+              campusq.retriive.com
+            </span>
+          </div>
+          <span className="font-mono text-[10px] text-muted-foreground/70">
+            retrieval · live
           </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] text-zinc-900 dark:text-white">
-            From scattered knowledge to instant answers.
-          </h2>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 relative">
-          {steps.map((s, i) => (
-            <Reveal key={s.n} delay={i * 80} className="relative">
-              <div className="group rounded-2xl border border-border bg-white dark:bg-black p-6 h-full transition-[transform,border-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:border-purple-700/40 dark:hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-700/10 dark:hover:shadow-purple-500/20">
-                <div className="text-xs font-mono text-purple-700 dark:text-purple-400">{s.n}</div>
-                <h3 className="mt-3 text-xl font-semibold tracking-tight text-zinc-900 dark:text-white">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  {s.body}
-                </p>
-              </div>
-              {i < steps.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-2 h-px w-4 bg-border" />
-              )}
-            </Reveal>
-          ))}
+        <div className="space-y-4 p-5 sm:p-6">
+          {/* Question */}
+          <div className="ml-auto w-fit max-w-[80%] rounded-2xl rounded-br-sm bg-secondary px-4 py-2.5 text-sm text-foreground">
+            What CGPA do I need to stay in good standing?
+          </div>
+
+          {/* Answer */}
+          <div className="max-w-[92%] rounded-2xl rounded-bl-sm border border-hairline bg-background px-4 py-3.5">
+            <p className="text-sm leading-relaxed text-foreground">
+              You're in{" "}
+              <span className="font-medium text-brand">Good Standing</span> when
+              your CGPA meets the threshold for your year and program. Falling
+              below it moves you to Academic Warning, then Suspension.
+              <span className="ml-0.5 inline-block h-4 w-[2px] translate-y-0.5 bg-brand animate-[caret_1.1s_steps(1)_infinite]" />
+            </p>
+            <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-hairline pt-3">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-2.5 py-1 font-mono text-[10px] font-medium text-brand-muted">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+                Academic Regulations § 7.1
+              </span>
+              <span className="font-mono text-[10px] text-emerald-600 dark:text-emerald-400">
+                current calendar · verified
+              </span>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
-function StatsSection() {
-  const stats = [
-    { v: "<200ms", l: "Median retrieval latency" },
-    { v: "10M+", l: "Documents indexed per tenant" },
+/* ------------------------------------------------------------------ */
+
+function CredibilityBand() {
+  const metrics = [
+    { v: "566", l: "Questions answered" },
+    { v: "91%", l: "Rated helpful" },
+    { v: "<200ms", l: "Median retrieval" },
     { v: "98%", l: "Citation accuracy" },
-    { v: "24/7", l: "Enterprise support" },
   ];
   return (
-    <section className="relative px-4 sm:px-8 lg:px-16 py-16 sm:py-20 bg-white dark:bg-black">
-      <div className="mx-auto max-w-6xl grid grid-cols-2 md:grid-cols-4 gap-6">
-        {stats.map((s, i) => (
-          <Reveal key={s.l} delay={i * 60} className="text-center md:text-left">
-            <div className="text-3xl sm:text-4xl font-bold tracking-[-0.03em] text-purple-700 dark:text-purple-400">
-              {s.v}
+    <section className="border-y border-hairline bg-card/40">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-y divide-hairline sm:grid-cols-4 sm:divide-y-0">
+        {metrics.map((m, i) => (
+          <Reveal key={m.l} delay={i * 70} className="px-5 py-8 text-center sm:py-10">
+            <div className="font-display text-4xl text-foreground sm:text-5xl">
+              {m.v}
             </div>
-            <div className="mt-1 text-xs sm:text-sm text-muted-foreground">
-              {s.l}
+            <div className="mt-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              {m.l}
             </div>
           </Reveal>
         ))}
@@ -235,47 +189,137 @@ function StatsSection() {
   );
 }
 
-function UseCasesSection() {
-  const cases = [
+/* ------------------------------------------------------------------ */
+
+function ProblemSection() {
+  return (
+    <section className="px-5 sm:px-8 lg:px-12 py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl">
+        <Reveal className="max-w-3xl">
+          <Eyebrow>The problem</Eyebrow>
+          <h2 className="font-display mt-5 text-4xl sm:text-5xl">
+            Your students are already asking.
+            <br />
+            The internet is answering with{" "}
+            <em className="text-amber-500">2017.</em>
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            We searched a routine question — “What CGPA do I need to stay in good
+            standing?” — and Google's top result was an archived 2017–2018
+            calendar page. For academic-standing rules, a stale answer can cost a
+            student their enrollment.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-2">
+          <Reveal>
+            <div className="h-full rounded-2xl border border-border bg-card p-6">
+              <div className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-amber-500" />
+                <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+                  Google · top result today
+                </span>
+              </div>
+              <div className="mt-4 rounded-xl border border-hairline bg-background p-4">
+                <p className="truncate font-mono text-[11px] text-emerald-600 dark:text-emerald-400">
+                  calendar.carleton.ca › 2017-2018 › undergrad
+                </p>
+                <p className="mt-1 text-base font-medium leading-snug text-[#1a0dab] dark:text-[#8ab4f8]">
+                  Academic Performance Evaluation – Carleton University
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                  7.1 Academic Performance Evaluation for Degree Students. The
+                  annual assessment of the student's status…
+                </p>
+              </div>
+              <div className="mt-3 rounded-lg border border-amber-400/40 bg-amber-50 px-3 py-2.5 dark:bg-amber-950/30">
+                <p className="text-xs leading-relaxed text-amber-800 dark:text-amber-200">
+                  ⚠ “This is an archived copy of the 2017–2018 catalog.” — a
+                  banner you have to scroll up to even notice.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={90}>
+            <div className="h-full rounded-2xl border border-brand/25 bg-card p-6">
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/70" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                </span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-emerald-700 dark:text-emerald-400">
+                  CampusQ · same question
+                </span>
+              </div>
+              <div className="mt-4 ml-auto w-fit max-w-[85%] rounded-2xl rounded-br-sm bg-secondary px-4 py-2.5 text-sm text-foreground">
+                What CGPA do I need to stay in good standing?
+              </div>
+              <div className="mt-3 rounded-2xl rounded-bl-sm border border-hairline bg-background px-4 py-3.5">
+                <p className="text-sm leading-relaxed text-foreground">
+                  You're in Good Standing when your CGPA meets the threshold for
+                  your year and program, per the University's{" "}
+                  <span className="font-medium text-brand">current</span>{" "}
+                  Academic Performance Evaluation regulations.
+                </p>
+                <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-hairline pt-3">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-2.5 py-1 font-mono text-[10px] font-medium text-brand-muted">
+                    <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+                    Academic Regulations § 7.1
+                  </span>
+                  <span className="font-mono text-[10px] text-emerald-600 dark:text-emerald-400">
+                    live calendar · verified
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+
+function HowItWorks() {
+  const steps = [
     {
-      tag: "Education",
-      title: "Universities & K-12",
-      body: "Help students, faculty, and staff get instant answers from policy docs, course catalogs, and academic records.",
+      n: "01",
+      title: "Connect your sources",
+      body: "Point Retriive at document stores, databases, and SaaS tools. We index them securely — your data never leaves your environment.",
     },
     {
-      tag: "Government",
-      title: "Public sector",
-      body: "Surface regulations, internal memos, and procedural knowledge for frontline employees and citizens alike.",
+      n: "02",
+      title: "Ground every query",
+      body: "Our retrieval pipeline pulls the most relevant passages and feeds them to the model with citation metadata attached.",
     },
     {
-      tag: "Enterprise",
-      title: "Knowledge-heavy teams",
-      body: "Operations, legal, and support teams cut research time by orders of magnitude with grounded retrieval.",
+      n: "03",
+      title: "Answer with the receipts",
+      body: "Users get sourced answers in chat, search, or embedded widgets. Admins see every question, citation, and gap.",
     },
   ];
   return (
-    <section className="relative px-4 sm:px-8 lg:px-16 py-20 sm:py-28 bg-zinc-50 dark:bg-zinc-950 border-y border-border">
+    <section className="border-t border-hairline bg-card/40 px-5 sm:px-8 lg:px-12 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl">
-        <div className="max-w-2xl">
-          <span className="inline-block rounded-full border border-brand/30 bg-brand-soft px-4 py-1 text-xs font-medium text-brand dark:text-purple-300">
-            Use cases
-          </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] text-zinc-900 dark:text-white">
-            Built for institutions that take knowledge seriously.
+        <Reveal className="max-w-2xl">
+          <Eyebrow>How it works</Eyebrow>
+          <h2 className="font-display mt-5 text-4xl sm:text-5xl">
+            From scattered knowledge to instant, cited answers.
           </h2>
-        </div>
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5">
-          {cases.map((c, i) => (
-            <Reveal key={c.title} delay={i * 80}>
-              <div className="h-full rounded-2xl border border-border bg-white dark:bg-black p-6 transition-[transform,border-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:border-purple-700/40 dark:hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-700/10 dark:hover:shadow-purple-500/20">
-                <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-purple-700 dark:text-purple-400">
-                  {c.tag}
-                </span>
-                <h3 className="mt-3 text-xl font-semibold tracking-tight text-zinc-900 dark:text-white">
-                  {c.title}
+        </Reveal>
+
+        <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-3">
+          {steps.map((s, i) => (
+            <Reveal key={s.n} delay={i * 90} className="bg-card">
+              <div className="h-full p-7 sm:p-8">
+                <div className="font-mono text-sm text-brand">[{s.n}]</div>
+                <h3 className="mt-5 text-lg font-semibold tracking-tight text-foreground">
+                  {s.title}
                 </h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                  {c.body}
+                <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                  {s.body}
                 </p>
               </div>
             </Reveal>
@@ -286,126 +330,142 @@ function UseCasesSection() {
   );
 }
 
-function CtaSection() {
+/* ------------------------------------------------------------------ */
+
+function Features() {
+  const features = [
+    {
+      icon: ShieldCheck,
+      title: "Retrieval-grounded",
+      body: "Every response is anchored to your documents with inline citations. No hallucinations, no guesswork.",
+    },
+    {
+      icon: Lock,
+      title: "Private by design",
+      body: "Your data stays in your environment. Role-based access, audit logs, and encryption at rest.",
+    },
+    {
+      icon: Database,
+      title: "Built for scale",
+      body: "A single department or a multi-campus deployment — millions of documents, sub-second retrieval.",
+    },
+    {
+      icon: Plug,
+      title: "Connects to your stack",
+      body: "SharePoint, Google Drive, Notion, Confluence, SIS, and SQL. Index once, query anywhere.",
+    },
+    {
+      icon: Languages,
+      title: "Multilingual & tuned",
+      body: "Fine-tuned for the vocabulary of education, healthcare, and government — Arabic and English by default.",
+    },
+    {
+      icon: BarChart3,
+      title: "Observable & governed",
+      body: "Dashboards for volume, satisfaction, and source coverage. Admin controls for redaction and policy.",
+    },
+  ];
   return (
-    <section className="relative px-4 sm:px-8 lg:px-16 py-20 sm:py-28 bg-white dark:bg-black overflow-hidden">
-      <div className="relative mx-auto max-w-4xl rounded-3xl border border-purple-700/20 dark:border-purple-500/30 bg-gradient-to-br from-brand-soft to-white dark:from-purple-950/60 dark:to-black p-10 sm:p-16 text-center overflow-hidden">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-purple-500 opacity-30 dark:opacity-40 blur-3xl"
-        />
-        <h2 className="relative text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] text-zinc-900 dark:text-white">
-          Turn hours of policy lookups into seconds.
-        </h2>
-        <p className="relative mt-4 text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
-          Book a 20-minute demo and see Retriive answer real questions from
-          your own documents — live, with citations.
-        </p>
-        <div className="relative mt-8 flex flex-wrap justify-center gap-4">
-          <Link
-            to="/contact"
-            className="rounded-md bg-brand px-7 py-3 text-sm font-medium text-brand-foreground shadow-lg shadow-purple-700/40 transition-[transform,background-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:bg-purple-800 hover:shadow-purple-700/60 active:translate-y-0 active:scale-[0.97]"
-          >
-            Book a 20-min demo
-          </Link>
-          <Link
-            to="/products"
-            className="rounded-md border border-border bg-white dark:bg-zinc-950 px-7 py-3 text-sm font-medium text-foreground transition-[transform,border-color,color] duration-300 ease-out-strong hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700 dark:hover:border-purple-400 dark:hover:text-purple-400 active:translate-y-0 active:scale-[0.97]"
-          >
-            See how it works
-          </Link>
+    <section className="px-5 sm:px-8 lg:px-12 py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl">
+        <Reveal className="max-w-2xl">
+          <Eyebrow>Platform</Eyebrow>
+          <h2 className="font-display mt-5 text-4xl sm:text-5xl">
+            The AI layer your institution can defend.
+          </h2>
+          <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Retrieval-augmented generation with enterprise-grade governance — so
+            teams get instant answers without compromising accuracy or privacy.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((f, i) => {
+            const Icon = f.icon;
+            return (
+              <Reveal key={f.title} delay={(i % 3) * 70}>
+                <div className="group h-full rounded-2xl border border-border bg-card p-6 transition-[transform,border-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-1 hover:border-brand/40 hover:shadow-xl hover:shadow-brand/5">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl border border-hairline bg-brand-soft text-brand transition-transform duration-300 ease-out-strong group-hover:scale-110">
+                    <Icon className="h-5 w-5" strokeWidth={1.8} />
+                  </div>
+                  <h3 className="mt-5 text-base font-semibold tracking-tight text-foreground">
+                    {f.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {f.body}
+                  </p>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
-function FloatingCards() {
+/* ------------------------------------------------------------------ */
+
+function Stats() {
+  const stats = [
+    { v: "10M+", l: "Documents indexed per tenant" },
+    { v: "24/7", l: "Enterprise support" },
+    { v: "5", l: "Native connectors, growing" },
+    { v: "1", l: "Source of truth" },
+  ];
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden md:block">
-      {/* Top-left chat bubble */}
-      <div className="absolute left-[6%] top-[18%] w-56 rounded-2xl border border-white/60 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-xl shadow-xl shadow-purple-700/10 dark:shadow-purple-500/20 p-4 text-left animate-[float_7s_ease-in-out_infinite]">
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-purple-700 dark:bg-purple-400" />
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-purple-700 dark:text-purple-400">
-            Retrieval
-          </span>
-        </div>
-        <p className="mt-2 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">
-          “Summarize the 2024 enrollment report and flag anomalies.”
-        </p>
+    <section className="border-t border-hairline px-5 sm:px-8 lg:px-12 py-20">
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 sm:grid-cols-4">
+        {stats.map((s, i) => (
+          <Reveal key={s.l} delay={i * 60}>
+            <div className="font-display text-4xl text-brand sm:text-5xl">
+              {s.v}
+            </div>
+            <div className="mt-2 text-sm text-muted-foreground">{s.l}</div>
+          </Reveal>
+        ))}
       </div>
-
-      {/* Top-right data node */}
-      <div className="absolute right-[7%] top-[14%] w-48 rounded-2xl border border-white/60 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-xl shadow-xl shadow-purple-700/10 dark:shadow-purple-500/20 p-4 text-left animate-[float_9s_ease-in-out_infinite] [animation-delay:-2s]">
-        <div className="flex items-center justify-between">
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-            Vector match
-          </span>
-          <span className="text-[10px] font-mono text-purple-700 dark:text-purple-400">0.97</span>
-        </div>
-        <div className="mt-3 space-y-1.5">
-          <div className="h-1.5 w-full rounded-full bg-purple-700/80 dark:bg-purple-400/90" />
-          <div className="h-1.5 w-3/4 rounded-full bg-purple-700/40 dark:bg-purple-400/50" />
-          <div className="h-1.5 w-1/2 rounded-full bg-purple-700/25 dark:bg-purple-400/30" />
-        </div>
-      </div>
-
-      {/* Bottom-right response bubble */}
-      <div className="absolute right-[10%] bottom-[10%] w-52 rounded-2xl border border-white/60 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-xl shadow-xl shadow-purple-700/10 dark:shadow-purple-500/20 p-4 text-left animate-[float_8s_ease-in-out_infinite] [animation-delay:-4s]">
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-            Synthesized
-          </span>
-        </div>
-        <p className="mt-2 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">
-          3 sources cited · 12ms inference
-        </p>
-      </div>
-
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) }
-          50% { transform: translateY(-12px) }
-        }
-      `}</style>
-    </div>
+    </section>
   );
 }
 
-function MeshGradient() {
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-    >
-      {/* Blob 1 — brand purple, drifts in a slow orbit */}
-      <div className="absolute left-1/2 top-1/2 h-[55rem] w-[55rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-600 opacity-25 blur-3xl animate-[mesh-drift-a_22s_ease-in-out_infinite]" />
-      {/* Blob 2 — deep indigo, counter-rotates */}
-      <div className="absolute left-1/2 top-1/2 h-[45rem] w-[45rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-700 opacity-20 blur-3xl animate-[mesh-drift-b_28s_ease-in-out_infinite]" />
-      {/* Blob 3 — soft fuchsia, slow vertical drift */}
-      <div className="absolute left-1/2 top-1/2 h-[40rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-500 opacity-15 blur-3xl animate-[mesh-drift-c_34s_ease-in-out_infinite]" />
+/* ------------------------------------------------------------------ */
 
-      <style>{`
-        @keyframes mesh-drift-a {
-          0%, 100% { transform: translate(-50%, -50%) translate(-12%, -8%) rotate(0deg) scale(1); }
-          50%      { transform: translate(-50%, -50%) translate(10%, 6%) rotate(180deg) scale(1.1); }
-        }
-        @keyframes mesh-drift-b {
-          0%, 100% { transform: translate(-50%, -50%) translate(14%, -6%) rotate(0deg) scale(1.05); }
-          50%      { transform: translate(-50%, -50%) translate(-10%, 10%) rotate(-180deg) scale(0.95); }
-        }
-        @keyframes mesh-drift-c {
-          0%, 100% { transform: translate(-50%, -50%) translate(0%, 12%) rotate(0deg) scale(1); }
-          50%      { transform: translate(-50%, -50%) translate(6%, -14%) rotate(120deg) scale(1.15); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .animate-\\[mesh-drift-a_22s_ease-in-out_infinite\\],
-          .animate-\\[mesh-drift-b_28s_ease-in-out_infinite\\],
-          .animate-\\[mesh-drift-c_34s_ease-in-out_infinite\\] { animation: none; }
-        }
-      `}</style>
-    </div>
+function FinalCta() {
+  return (
+    <section className="px-5 sm:px-8 lg:px-12 pb-24 sm:pb-32">
+      <Reveal className="mx-auto max-w-6xl">
+        <div className="relative overflow-hidden rounded-3xl border border-border bg-card px-6 py-16 text-center sm:px-16 sm:py-24">
+          <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+            <div className="absolute inset-0 bg-dots opacity-60" />
+            <div className="absolute left-1/2 top-full h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 glow" />
+          </div>
+          <Eyebrow>Get started</Eyebrow>
+          <h2 className="font-display mx-auto mt-5 max-w-2xl text-4xl sm:text-6xl">
+            Turn hours of policy lookups into{" "}
+            <em className="text-brand">seconds.</em>
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
+            Book a 20-minute demo and watch Retriive answer real questions from
+            your own documents — live, with citations.
+          </p>
+          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              to="/contact"
+              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-7 py-3 text-sm font-medium text-background transition-[transform,opacity] duration-200 ease-out-strong hover:opacity-90 active:scale-[0.97]"
+            >
+              Book a demo
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 ease-out-strong group-hover:translate-x-0.5" />
+            </Link>
+            <Link
+              to="/products"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-7 py-3 text-sm font-medium text-foreground transition-[transform,border-color] duration-200 ease-out-strong hover:border-brand active:scale-[0.97]"
+            >
+              Explore CampusQ
+            </Link>
+          </div>
+        </div>
+      </Reveal>
+    </section>
   );
 }

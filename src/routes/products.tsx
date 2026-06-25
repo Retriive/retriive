@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowUpRight, Quote, CalendarCheck, Clock, Languages } from "lucide-react";
 import { CAMPUSQ_URL } from "@/lib/external-links";
 import { seo } from "../lib/seo";
 import { Reveal } from "../components/reveal";
@@ -6,13 +7,12 @@ import { Reveal } from "../components/reveal";
 export const Route = createFileRoute("/products")({
   head: () => ({
     ...seo({
-      title: "Products — Retriive Inc.",
+      title: "Products — Retriive",
       description:
-        "Explore Retriive's growing suite of intelligent AI platforms, starting with CampusQ — live at Carleton University.",
+        "Explore Retriive's suite of grounded AI platforms, starting with CampusQ — live at Carleton University.",
       path: "/products",
     }),
   }),
-
   component: ProductsPage,
 });
 
@@ -20,358 +20,264 @@ const TOP_QUESTIONS = [
   { q: "What happens if I fail a required course twice?", n: 17 },
   { q: "How do I book a study room?", n: 7 },
   { q: "Who is teaching SYSC 2004 in Fall 2026?", n: 7 },
-  {
-    q: "What are the exact prerequisites for SYSC 3310, and is it offered this Fall?",
-    n: 7,
-  },
+  { q: "What are the exact prerequisites for SYSC 3310?", n: 7 },
 ];
 
 const CATEGORIES = [
   { label: "Course Lookups", n: 236 },
   { label: "General / Other", n: 115 },
   { label: "Deadlines & Dates", n: 60 },
-  { label: "Academic Regulations & GPA", n: 45 },
-  { label: "Prerequisites & Requirements", n: 43 },
-  { label: "Registration Procedures", n: 28 },
+  { label: "Academic Regs & GPA", n: 45 },
+  { label: "Prerequisites", n: 43 },
+  { label: "Registration", n: 28 },
+];
+
+const HOURLY = [
+  18, 17, 2, 93, 14, 52, 155, 1, 0, 0, 1, 11, 7, 25, 29, 20, 22, 23, 20, 4, 5,
+  15, 13, 19,
+];
+
+const CAPABILITIES = [
+  {
+    icon: Quote,
+    title: "Cites every answer",
+    body: "No claim without a source. Each response links to the exact section it came from.",
+  },
+  {
+    icon: CalendarCheck,
+    title: "Knows the current calendar",
+    body: "Grounded in the live academic calendar — it updates the moment policy does.",
+  },
+  {
+    icon: Clock,
+    title: "Available 24/7",
+    body: "The busiest hour in our data is 6am. CampusQ answers when advising offices are closed.",
+  },
+  {
+    icon: Languages,
+    title: "Speaks student",
+    body: "Tuned for course codes, prerequisites, and the questions students actually type.",
+  },
 ];
 
 function ProductsPage() {
-  const maxCat = Math.max(...CATEGORIES.map((c) => c.n));
-
   return (
-    <section className="px-4 sm:px-8 lg:px-16 py-12 sm:py-16 lg:py-24">
-      {/* Page header */}
-      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-14 max-w-6xl mx-auto">
-        <div>
-          <p className="text-sm font-medium text-brand">Our Platforms</p>
-          <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em]">
-            A growing suite of intelligent products
-          </h1>
-        </div>
-        <p className="max-w-md text-muted-foreground">
-          Purpose-built tools designed to bring AI-driven clarity to data,
-          people, and workflows.
-        </p>
-      </div>
-
-      {/* Featured: CampusQ */}
-      <Reveal className="max-w-6xl mx-auto">
-      <article className="rounded-3xl border border-border bg-card overflow-hidden shadow-sm">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-0">
-          {/* Left: identity + CTA */}
-          <div className="lg:col-span-2 p-8 sm:p-10 border-b lg:border-b-0 lg:border-r border-border bg-gradient-to-br from-brand-soft to-white dark:to-card flex flex-col">
-            <div className="flex items-center gap-2">
-              <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
-                Live pilot
-              </span>
-            </div>
-            <h2 className="mt-4 text-3xl sm:text-4xl font-bold tracking-[-0.03em] text-foreground">
-              CampusQ
-            </h2>
-            <p className="mt-2 text-sm font-medium text-purple-700 dark:text-purple-400">
-              Carleton University · Systems & Computer Engineering
-            </p>
-            <p className="mt-5 text-sm sm:text-base text-muted-foreground leading-relaxed flex-1">
-              An AI advisor that answers student questions about courses,
-              prerequisites, deadlines, and campus services — grounded in the
-              department's own documents, with citations on every answer.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href={CAMPUSQ_URL}
-                className="rounded-md bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground shadow-md shadow-purple-700/30 transition-[transform,background-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-0.5 hover:bg-purple-800 active:translate-y-0 active:scale-[0.97]"
-              >
-                Open CampusQ →
-              </a>
-              <Link
-                to="/contact"
-                className="rounded-md border border-border bg-white dark:bg-zinc-900 px-5 py-2.5 text-sm font-medium text-foreground transition-[transform,border-color,color] duration-300 ease-out-strong hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700 dark:hover:border-purple-400 dark:hover:text-purple-400 active:translate-y-0 active:scale-[0.97]"
-              >
-                Pilot at your school
-              </Link>
-            </div>
-          </div>
-
-          {/* Right: live dashboard preview */}
-          <div className="lg:col-span-3 p-6 sm:p-8 lg:p-10">
-            <div className="flex items-center justify-between mb-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                Advisor Dashboard · All time
-              </p>
-              <span className="text-[10px] font-mono text-muted-foreground">
-                live
-              </span>
-            </div>
-
-            {/* Top stats */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-4">
-              <Stat value="566" label="Questions asked" />
-              <Stat value="91%" label="Helpfulness · 20👍 2👎" />
-              <Stat value="SYSC" label="Top dept. by volume" />
-            </div>
-
-            {/* Hourly question pattern */}
-            <div className="mt-6 rounded-xl border border-border bg-muted/40 p-4">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-medium text-foreground">
-                  When students ask questions
-                </span>
-                <span className="text-[10px] text-muted-foreground">
-                  24h pattern
-                </span>
-              </div>
-              <HourlyChart />
-              <div className="mt-2 flex items-center justify-between text-[10px] text-muted-foreground">
-                <span>12a</span>
-                <span>6a</span>
-                <span>12p</span>
-                <span>6p</span>
-                <span>12a</span>
-              </div>
-            </div>
-
-            {/* Categories */}
-            <div className="mt-6">
-              <p className="text-xs font-medium text-foreground mb-3">
-                Top categories
-              </p>
-              <ul className="space-y-2">
-                {CATEGORIES.map((c) => (
-                  <li key={c.label} className="flex items-center gap-3">
-                    <span className="w-44 shrink-0 text-xs text-foreground truncate">
-                      {c.label}
-                    </span>
-                    <div className="flex-1 h-2 rounded-full bg-muted overflow-hidden">
-                      <div
-                        className="h-full rounded-full bg-purple-700/80"
-                        style={{ width: `${(c.n / maxCat) * 100}%` }}
-                      />
-                    </div>
-                    <span className="w-8 shrink-0 text-right text-xs font-mono text-muted-foreground">
-                      {c.n}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Top questions */}
-            <div className="mt-6">
-              <p className="text-xs font-medium text-foreground mb-3">
-                Most-asked questions
-              </p>
-              <ol className="space-y-2">
-                {TOP_QUESTIONS.map((t, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-3 rounded-lg border border-border bg-white dark:bg-zinc-900 p-3"
-                  >
-                    <span className="text-[10px] font-mono text-purple-700 dark:text-purple-400 mt-0.5">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="flex-1 text-xs text-foreground leading-relaxed">
-                      "{t.q}"
-                    </span>
-                    <span className="text-[10px] font-mono text-muted-foreground shrink-0">
-                      ×{t.n}
-                    </span>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </div>
-      </article>
-      </Reveal>
-
-      {/* Why this matters — stale Google result vs grounded answer */}
-      <WhyThisMatters />
-
-      {/* Coming soon */}
-      <Reveal className="max-w-6xl mx-auto mt-8">
-        <article className="rounded-3xl border border-dashed border-border bg-muted/20 p-8 sm:p-10 text-center">
-          <span className="inline-block rounded-full border border-border bg-white dark:bg-zinc-900 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-            Coming soon
-          </span>
-          <h3 className="mt-4 text-xl sm:text-2xl font-semibold tracking-tight text-foreground">
-            The next Retriive platform is in development
-          </h3>
-          <p className="mt-2 text-sm text-muted-foreground max-w-md mx-auto">
-            We're working with design partners on the next vertical. Want a
-            say in what we build?
-          </p>
-          <Link
-            to="/contact"
-            className="mt-5 inline-block rounded-md border border-border bg-white dark:bg-zinc-900 px-5 py-2 text-sm font-medium text-foreground transition-[transform,border-color,color] duration-300 ease-out-strong hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700 dark:hover:border-purple-400 dark:hover:text-purple-400 active:translate-y-0 active:scale-[0.97]"
-          >
-            Get in touch
-          </Link>
-        </article>
-      </Reveal>
-    </section>
-  );
-}
-
-function WhyThisMatters() {
-  return (
-    <section className="max-w-6xl mx-auto mt-8">
-      <Reveal>
-      <div className="rounded-3xl border border-border bg-card overflow-hidden">
+    <section className="px-5 sm:px-8 lg:px-12 py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl">
         {/* Header */}
-        <div className="p-8 sm:p-10 border-b border-border bg-gradient-to-br from-amber-50 to-white dark:from-amber-950/30 dark:to-card">
-          <span className="inline-block rounded-full border border-amber-300/60 bg-amber-100/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-700">
-            Why this matters
+        <Reveal className="max-w-3xl">
+          <span className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-brand-muted">
+            <span className="h-1 w-1 rounded-full bg-brand" />
+            Our platforms
           </span>
-          <h3 className="mt-4 text-2xl sm:text-3xl font-bold tracking-[-0.03em] text-foreground max-w-2xl">
-            Right now, Google's #1 answer to a Carleton student is{" "}
-            <span className="text-amber-600">seven years out of date.</span>
-          </h3>
-          <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl">
-            We searched a routine question every student asks —{" "}
-            <span className="font-medium text-foreground">
-              "What CGPA do I need to stay in good standing?"
-            </span>{" "}
-            — and the top result was an{" "}
-            <span className="font-medium text-foreground">
-              archived 2017–2018 calendar page
-            </span>
-            . The only warning is a banner you have to scroll back up to notice.
-            For academic-standing rules, a stale answer can cost a student their
-            enrollment.
+          <h1 className="font-display mt-5 text-4xl sm:text-5xl md:text-6xl">
+            A growing suite of grounded products.
+          </h1>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Purpose-built tools that bring cited, AI-driven clarity to the data,
+            people, and workflows of an institution.
           </p>
-        </div>
+        </Reveal>
 
-        {/* Side-by-side */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-          {/* Left: the stale Google result */}
-          <div className="p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-border">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="inline-flex h-2 w-2 rounded-full bg-amber-500" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                Google · Top result today
-              </span>
-            </div>
+        {/* Featured: CampusQ */}
+        <Reveal className="mt-14">
+          <article className="overflow-hidden rounded-3xl border border-border bg-card">
+            <div className="grid grid-cols-1 lg:grid-cols-5">
+              {/* Identity */}
+              <div className="flex flex-col border-b border-hairline p-8 sm:p-10 lg:col-span-2 lg:border-b-0 lg:border-r">
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/70" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                  </span>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
+                    Live pilot
+                  </span>
+                </div>
+                <h2 className="font-display mt-5 text-5xl text-foreground">CampusQ</h2>
+                <p className="mt-2 font-mono text-xs text-brand-muted">
+                  Carleton University · Systems &amp; Computer Engineering
+                </p>
+                <p className="mt-5 flex-1 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                  An AI advisor that answers student questions about courses,
+                  prerequisites, deadlines, and campus services — grounded in the
+                  department's own documents, with a citation on every answer.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href={CAMPUSQ_URL}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-[transform,opacity] duration-200 ease-out-strong hover:opacity-90 active:scale-[0.97]"
+                  >
+                    Open CampusQ
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center rounded-full border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-[transform,border-color] duration-200 ease-out-strong hover:border-brand active:scale-[0.97]"
+                  >
+                    Pilot at your school
+                  </Link>
+                </div>
+              </div>
 
-            {/* Fake SERP entry */}
-            <div className="rounded-xl border border-border bg-white dark:bg-zinc-900 p-4">
-              <p className="text-xs text-emerald-700 dark:text-emerald-400 truncate">
-                calendar.carleton.ca › calendars › 2017-2018 › undergrad
-              </p>
-              <p className="mt-1 text-base font-medium text-[#1a0dab] dark:text-[#8ab4f8] leading-snug">
-                Academic Performance Evaluation – Carleton University
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                7.1 Academic Performance Evaluation for Degree Students. The
-                annual assessment of the student's status in his or her degree…
-              </p>
-            </div>
+              {/* Dashboard */}
+              <div className="p-6 sm:p-8 lg:col-span-3 lg:p-10">
+                <div className="mb-5 flex items-center justify-between">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                    Advisor dashboard · all time
+                  </p>
+                  <span className="font-mono text-[10px] text-emerald-600 dark:text-emerald-400">
+                    live
+                  </span>
+                </div>
 
-            {/* The buried archived banner */}
-            <div className="mt-3 rounded-lg border border-amber-300/70 dark:border-amber-500/30 bg-amber-50 dark:bg-amber-950/30 p-3">
-              <p className="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">
-                ⚠ "This is an archived copy of the{" "}
-                <span className="font-semibold">2017–2018 catalog</span>. To
-                access the most recent version of the catalog, please visit
-                calendar.carleton.ca."
-              </p>
-            </div>
-            <p className="mt-3 text-[11px] text-muted-foreground">
-              Easy to miss · No indication the rules may have changed · No source
-              for the <em>current</em> policy
-            </p>
-          </div>
+                <div className="grid grid-cols-3 gap-3">
+                  <Stat value="566" label="Questions asked" />
+                  <Stat value="91%" label="Helpful · 20👍 2👎" />
+                  <Stat value="SYSC" label="Top dept." />
+                </div>
 
-          {/* Right: CampusQ grounded answer */}
-          <div className="p-6 sm:p-8 bg-muted/40">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700 dark:text-emerald-400">
-                CampusQ · Same question
-              </span>
-            </div>
+                <div className="mt-5 rounded-xl border border-hairline bg-background p-4">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="text-xs font-medium text-foreground">
+                      When students ask
+                    </span>
+                    <span className="font-mono text-[10px] text-muted-foreground">
+                      24h pattern
+                    </span>
+                  </div>
+                  <HourlyChart />
+                  <div className="mt-2 flex justify-between font-mono text-[10px] text-muted-foreground">
+                    <span>12a</span>
+                    <span>6a</span>
+                    <span>12p</span>
+                    <span>6p</span>
+                    <span>12a</span>
+                  </div>
+                </div>
 
-            {/* Question bubble */}
-            <div className="rounded-xl rounded-br-sm border border-border bg-white dark:bg-zinc-900 px-4 py-3 ml-8">
-              <p className="text-xs text-foreground">
-                What CGPA do I need to stay in good standing?
-              </p>
-            </div>
-
-            {/* Answer bubble */}
-            <div className="mt-3 rounded-xl rounded-bl-sm border border-purple-700/20 dark:border-purple-400/25 bg-white dark:bg-zinc-900 px-4 py-3 mr-8 shadow-sm">
-              <p className="text-xs text-foreground leading-relaxed">
-                You're in <span className="font-medium">Good Standing</span> when
-                your CGPA meets the threshold for your year and program, as set
-                out in the University's current Academic Performance Evaluation
-                regulations. Falling below it moves you to Academic Warning or
-                Suspension.
-              </p>
-              <div className="mt-3 flex items-center gap-2 border-t border-border pt-2">
-                <span className="inline-flex items-center gap-1 rounded-full bg-brand-soft px-2 py-0.5 text-[10px] font-medium text-purple-700 dark:text-purple-300">
-                  <span className="h-1.5 w-1.5 rounded-full bg-purple-700 dark:bg-purple-400" />
-                  Source: Academic Regulations 7.1
-                </span>
-                <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400">
-                  current calendar · verified
-                </span>
+                <div className="mt-5">
+                  <p className="mb-3 text-xs font-medium text-foreground">
+                    Top categories
+                  </p>
+                  <ul className="space-y-2">
+                    {CATEGORIES.map((c) => (
+                      <li key={c.label} className="flex items-center gap-3">
+                        <span className="w-36 shrink-0 truncate text-xs text-foreground">
+                          {c.label}
+                        </span>
+                        <div className="h-2 flex-1 overflow-hidden rounded-full bg-secondary">
+                          <div
+                            className="h-full rounded-full bg-brand/80"
+                            style={{ width: `${(c.n / CATEGORIES[0].n) * 100}%` }}
+                          />
+                        </div>
+                        <span className="w-8 shrink-0 text-right font-mono text-xs text-muted-foreground">
+                          {c.n}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
-            <p className="mt-3 text-[11px] text-muted-foreground ml-8">
-              Grounded in the <em>live</em> calendar · Cites the exact section ·
-              Updates when Carleton's policy does
-            </p>
-          </div>
+          </article>
+        </Reveal>
+
+        {/* Capabilities */}
+        <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {CAPABILITIES.map((c, i) => {
+            const Icon = c.icon;
+            return (
+              <Reveal key={c.title} delay={(i % 4) * 60}>
+                <div className="h-full rounded-2xl border border-border bg-card p-6 transition-[transform,border-color] duration-300 ease-out-strong hover:-translate-y-1 hover:border-brand/40">
+                  <div className="grid h-10 w-10 place-items-center rounded-xl border border-hairline bg-brand-soft text-brand">
+                    <Icon className="h-5 w-5" strokeWidth={1.8} />
+                  </div>
+                  <h3 className="mt-4 text-sm font-semibold text-foreground">
+                    {c.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {c.body}
+                  </p>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
 
-        {/* Footer takeaway */}
-        <div className="px-8 sm:px-10 py-6 border-t border-border bg-white dark:bg-zinc-900 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <p className="text-sm text-foreground max-w-2xl">
-            Students already ask CampusQ this — "Academic Regulations & GPA" is a{" "}
-            <span className="font-semibold text-purple-700 dark:text-purple-400">top-asked category</span>
-            . The difference is whether the answer comes from a forgotten 2017
-            page or your current, cited policy.
-          </p>
-          <Link
-            to="/contact"
-            className="shrink-0 rounded-md bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground shadow-md shadow-purple-700/30 transition-[transform,background-color,box-shadow] duration-300 ease-out-strong hover:-translate-y-0.5 hover:bg-purple-800 active:translate-y-0 active:scale-[0.97]"
-          >
-            Bring CampusQ to your school →
-          </Link>
-        </div>
+        {/* Most-asked */}
+        <Reveal className="mt-6">
+          <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              Most-asked questions
+            </p>
+            <ol className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {TOP_QUESTIONS.map((t, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3 rounded-xl border border-hairline bg-background p-3.5"
+                >
+                  <span className="mt-0.5 font-mono text-[10px] text-brand">
+                    [{String(i + 1).padStart(2, "0")}]
+                  </span>
+                  <span className="flex-1 text-xs leading-relaxed text-foreground">
+                    “{t.q}”
+                  </span>
+                  <span className="shrink-0 font-mono text-[10px] text-muted-foreground">
+                    ×{t.n}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </Reveal>
+
+        {/* Coming soon */}
+        <Reveal className="mt-6">
+          <article className="rounded-3xl border border-dashed border-border bg-card/40 p-10 text-center">
+            <span className="inline-block rounded-full border border-hairline bg-card px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              Coming soon
+            </span>
+            <h3 className="font-display mt-4 text-2xl text-foreground sm:text-3xl">
+              The next Retriive platform is in development.
+            </h3>
+            <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
+              We're working with design partners on the next vertical. Want a say
+              in what we build?
+            </p>
+            <Link
+              to="/contact"
+              className="mt-6 inline-flex items-center rounded-full border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground transition-[transform,border-color] duration-200 ease-out-strong hover:border-brand active:scale-[0.97]"
+            >
+              Get in touch
+            </Link>
+          </article>
+        </Reveal>
       </div>
-      </Reveal>
     </section>
   );
 }
 
 function Stat({ value, label }: { value: string; label: string }) {
   return (
-    <div className="rounded-xl border border-border bg-white dark:bg-zinc-900 p-3 sm:p-4">
-      <div className="text-xl sm:text-2xl font-bold tracking-tight text-purple-700 dark:text-purple-400">
-        {value}
-      </div>
-      <div className="mt-1 text-[10px] sm:text-xs text-muted-foreground leading-snug">
+    <div className="rounded-xl border border-hairline bg-background p-3.5">
+      <div className="font-display text-2xl text-brand sm:text-3xl">{value}</div>
+      <div className="mt-1 text-[10px] leading-snug text-muted-foreground">
         {label}
       </div>
     </div>
   );
 }
 
-// Real hourly distribution from the CampusQ dashboard.
-const HOURLY = [
-  18, 17, 2, 93, 14, 52, 155, 1, 0, 0, 1, 11, 7, 25, 29, 20, 22, 23, 20, 4, 5,
-  15, 13, 19,
-];
-
 function HourlyChart() {
   const max = Math.max(...HOURLY);
   return (
-    <div className="flex items-end gap-[3px] h-20">
+    <div className="flex h-20 items-end gap-[3px]">
       {HOURLY.map((v, i) => (
         <div
           key={i}
-          className="flex-1 rounded-sm bg-purple-700/80 hover:bg-purple-700 transition-colors"
+          className="flex-1 rounded-sm bg-brand/75 transition-colors duration-200 hover:bg-brand"
           style={{ height: `${Math.max((v / max) * 100, 3)}%` }}
           title={`${i}:00 — ${v} questions`}
         />
