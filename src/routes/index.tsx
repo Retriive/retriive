@@ -21,7 +21,7 @@ function Home() {
       {/* Faint dot-grid background */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-20 [background-image:radial-gradient(rgb(255_255_255/0.06)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_at_center,black_55%,transparent_85%)]"
+        className="pointer-events-none absolute inset-0 -z-20 [background-image:radial-gradient(rgb(0_0_0/0.07)_1px,transparent_1px)] dark:[background-image:radial-gradient(rgb(255_255_255/0.06)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_at_center,black_55%,transparent_85%)]"
       />
 
       {/* Animated mesh-gradient backdrop */}
@@ -34,9 +34,9 @@ function Home() {
         <span className="inline-block rounded-full border border-brand/30 bg-brand-soft px-4 py-1 text-xs font-medium text-brand">
           For university operations & student-services teams
         </span>
-        <h1 className="mt-6 text-4xl sm:text-5xl md:text-7xl font-bold tracking-[-0.035em] leading-[1.05] text-white">
+        <h1 className="mt-6 text-4xl sm:text-5xl md:text-7xl font-bold tracking-[-0.035em] leading-[1.05] text-zinc-900 dark:text-white">
           Answer any policy question{" "}
-          <span className="text-purple-400 transition-colors duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
+          <span className="text-purple-700 dark:text-purple-400 transition-colors duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
             in seconds, not hours.
           </span>
         </h1>
@@ -61,7 +61,7 @@ function Home() {
             name="email"
             required
             placeholder="you@institution.edu"
-            className="flex-1 rounded-md border border-border bg-zinc-900 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30"
+            className="flex-1 rounded-md border border-border bg-white dark:bg-zinc-900 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-purple-600 focus:ring-2 focus:ring-purple-500/30"
           />
           <button
             type="submit"
@@ -117,13 +117,13 @@ function FeaturesSection() {
   ];
 
   return (
-    <section className="relative px-4 sm:px-8 lg:px-16 py-20 sm:py-28 bg-black">
+    <section className="relative px-4 sm:px-8 lg:px-16 py-20 sm:py-28 bg-white dark:bg-black">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
-          <span className="inline-block rounded-full border border-brand/30 bg-brand-soft px-4 py-1 text-xs font-medium text-purple-300">
+          <span className="inline-block rounded-full border border-brand/30 bg-brand-soft px-4 py-1 text-xs font-medium text-brand dark:text-purple-300">
             Platform
           </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] text-white">
+          <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] text-zinc-900 dark:text-white">
             The AI layer your institution can actually trust.
           </h2>
           <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
@@ -137,12 +137,12 @@ function FeaturesSection() {
           {features.map((f) => (
             <div
               key={f.title}
-              className="group rounded-2xl border border-border bg-zinc-950 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/20"
+              className="group rounded-2xl border border-border bg-white dark:bg-zinc-950 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-700/40 dark:hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-700/10 dark:hover:shadow-purple-500/20"
             >
               <div className="h-9 w-9 rounded-lg bg-brand-soft flex items-center justify-center">
-                <span className="h-2 w-2 rounded-full bg-purple-400" />
+                <span className="h-2 w-2 rounded-full bg-purple-700 dark:bg-purple-400" />
               </div>
-              <h3 className="mt-4 text-lg font-semibold tracking-tight text-white">
+              <h3 className="mt-4 text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">
                 {f.title}
               </h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
@@ -176,13 +176,13 @@ function HowItWorksSection() {
   ];
 
   return (
-    <section className="relative px-4 sm:px-8 lg:px-16 py-20 sm:py-28 bg-zinc-950 border-y border-border">
+    <section className="relative px-4 sm:px-8 lg:px-16 py-20 sm:py-28 bg-zinc-50 dark:bg-zinc-950 border-y border-border">
       <div className="mx-auto max-w-6xl">
         <div className="text-center max-w-2xl mx-auto">
-          <span className="inline-block rounded-full border border-brand/30 bg-brand-soft px-4 py-1 text-xs font-medium text-purple-300">
+          <span className="inline-block rounded-full border border-brand/30 bg-brand-soft px-4 py-1 text-xs font-medium text-brand dark:text-purple-300">
             How it works
           </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] text-white">
+          <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] text-zinc-900 dark:text-white">
             From scattered knowledge to instant answers.
           </h2>
         </div>
@@ -190,9 +190,9 @@ function HowItWorksSection() {
         <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 relative">
           {steps.map((s, i) => (
             <div key={s.n} className="relative">
-              <div className="rounded-2xl border border-border bg-black p-6 h-full">
-                <div className="text-xs font-mono text-purple-400">{s.n}</div>
-                <h3 className="mt-3 text-xl font-semibold tracking-tight text-white">
+              <div className="rounded-2xl border border-border bg-white dark:bg-black p-6 h-full">
+                <div className="text-xs font-mono text-purple-700 dark:text-purple-400">{s.n}</div>
+                <h3 className="mt-3 text-xl font-semibold tracking-tight text-zinc-900 dark:text-white">
                   {s.title}
                 </h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
@@ -218,11 +218,11 @@ function StatsSection() {
     { v: "24/7", l: "Enterprise support" },
   ];
   return (
-    <section className="relative px-4 sm:px-8 lg:px-16 py-16 sm:py-20 bg-black">
+    <section className="relative px-4 sm:px-8 lg:px-16 py-16 sm:py-20 bg-white dark:bg-black">
       <div className="mx-auto max-w-6xl grid grid-cols-2 md:grid-cols-4 gap-6">
         {stats.map((s) => (
           <div key={s.l} className="text-center md:text-left">
-            <div className="text-3xl sm:text-4xl font-bold tracking-[-0.03em] text-purple-400">
+            <div className="text-3xl sm:text-4xl font-bold tracking-[-0.03em] text-purple-700 dark:text-purple-400">
               {s.v}
             </div>
             <div className="mt-1 text-xs sm:text-sm text-muted-foreground">
@@ -254,13 +254,13 @@ function UseCasesSection() {
     },
   ];
   return (
-    <section className="relative px-4 sm:px-8 lg:px-16 py-20 sm:py-28 bg-zinc-950 border-y border-border">
+    <section className="relative px-4 sm:px-8 lg:px-16 py-20 sm:py-28 bg-zinc-50 dark:bg-zinc-950 border-y border-border">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
-          <span className="inline-block rounded-full border border-brand/30 bg-brand-soft px-4 py-1 text-xs font-medium text-purple-300">
+          <span className="inline-block rounded-full border border-brand/30 bg-brand-soft px-4 py-1 text-xs font-medium text-brand dark:text-purple-300">
             Use cases
           </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] text-white">
+          <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] text-zinc-900 dark:text-white">
             Built for institutions that take knowledge seriously.
           </h2>
         </div>
@@ -268,12 +268,12 @@ function UseCasesSection() {
           {cases.map((c) => (
             <div
               key={c.title}
-              className="rounded-2xl border border-border bg-black p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/20"
+              className="rounded-2xl border border-border bg-white dark:bg-black p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-700/40 dark:hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-700/10 dark:hover:shadow-purple-500/20"
             >
-              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-purple-400">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-purple-700 dark:text-purple-400">
                 {c.tag}
               </span>
-              <h3 className="mt-3 text-xl font-semibold tracking-tight text-white">
+              <h3 className="mt-3 text-xl font-semibold tracking-tight text-zinc-900 dark:text-white">
                 {c.title}
               </h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
@@ -289,13 +289,13 @@ function UseCasesSection() {
 
 function CtaSection() {
   return (
-    <section className="relative px-4 sm:px-8 lg:px-16 py-20 sm:py-28 bg-black overflow-hidden">
-      <div className="relative mx-auto max-w-4xl rounded-3xl border border-purple-500/30 bg-gradient-to-br from-purple-950/60 to-black p-10 sm:p-16 text-center overflow-hidden">
+    <section className="relative px-4 sm:px-8 lg:px-16 py-20 sm:py-28 bg-white dark:bg-black overflow-hidden">
+      <div className="relative mx-auto max-w-4xl rounded-3xl border border-purple-700/20 dark:border-purple-500/30 bg-gradient-to-br from-brand-soft to-white dark:from-purple-950/60 dark:to-black p-10 sm:p-16 text-center overflow-hidden">
         <div
           aria-hidden
-          className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-purple-500 opacity-40 blur-3xl"
+          className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-purple-500 opacity-30 dark:opacity-40 blur-3xl"
         />
-        <h2 className="relative text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] text-white">
+        <h2 className="relative text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.03em] text-zinc-900 dark:text-white">
           Turn hours of policy lookups into seconds.
         </h2>
         <p className="relative mt-4 text-base sm:text-lg text-muted-foreground max-w-xl mx-auto">
@@ -311,7 +311,7 @@ function CtaSection() {
           </Link>
           <Link
             to="/products"
-            className="rounded-md border border-border bg-zinc-950 px-7 py-3 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-400 hover:text-purple-400"
+            className="rounded-md border border-border bg-white dark:bg-zinc-950 px-7 py-3 text-sm font-medium text-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-700 hover:text-purple-700 dark:hover:border-purple-400 dark:hover:text-purple-400"
           >
             See how it works
           </Link>
@@ -325,42 +325,42 @@ function FloatingCards() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 hidden md:block">
       {/* Top-left chat bubble */}
-      <div className="absolute left-[6%] top-[18%] w-56 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-xl shadow-purple-500/20 p-4 text-left animate-[float_7s_ease-in-out_infinite]">
+      <div className="absolute left-[6%] top-[18%] w-56 rounded-2xl border border-white/60 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-xl shadow-xl shadow-purple-700/10 dark:shadow-purple-500/20 p-4 text-left animate-[float_7s_ease-in-out_infinite]">
         <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-purple-400" />
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-purple-400">
+          <span className="h-2 w-2 rounded-full bg-purple-700 dark:bg-purple-400" />
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-purple-700 dark:text-purple-400">
             Retrieval
           </span>
         </div>
-        <p className="mt-2 text-xs text-zinc-300 leading-relaxed">
+        <p className="mt-2 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">
           “Summarize the 2024 enrollment report and flag anomalies.”
         </p>
       </div>
 
       {/* Top-right data node */}
-      <div className="absolute right-[7%] top-[14%] w-48 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-xl shadow-purple-500/20 p-4 text-left animate-[float_9s_ease-in-out_infinite] [animation-delay:-2s]">
+      <div className="absolute right-[7%] top-[14%] w-48 rounded-2xl border border-white/60 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-xl shadow-xl shadow-purple-700/10 dark:shadow-purple-500/20 p-4 text-left animate-[float_9s_ease-in-out_infinite] [animation-delay:-2s]">
         <div className="flex items-center justify-between">
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
             Vector match
           </span>
-          <span className="text-[10px] font-mono text-purple-400">0.97</span>
+          <span className="text-[10px] font-mono text-purple-700 dark:text-purple-400">0.97</span>
         </div>
         <div className="mt-3 space-y-1.5">
-          <div className="h-1.5 w-full rounded-full bg-purple-400/90" />
-          <div className="h-1.5 w-3/4 rounded-full bg-purple-400/50" />
-          <div className="h-1.5 w-1/2 rounded-full bg-purple-400/30" />
+          <div className="h-1.5 w-full rounded-full bg-purple-700/80 dark:bg-purple-400/90" />
+          <div className="h-1.5 w-3/4 rounded-full bg-purple-700/40 dark:bg-purple-400/50" />
+          <div className="h-1.5 w-1/2 rounded-full bg-purple-700/25 dark:bg-purple-400/30" />
         </div>
       </div>
 
       {/* Bottom-right response bubble */}
-      <div className="absolute right-[10%] bottom-[10%] w-52 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-xl shadow-purple-500/20 p-4 text-left animate-[float_8s_ease-in-out_infinite] [animation-delay:-4s]">
+      <div className="absolute right-[10%] bottom-[10%] w-52 rounded-2xl border border-white/60 dark:border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-xl shadow-xl shadow-purple-700/10 dark:shadow-purple-500/20 p-4 text-left animate-[float_8s_ease-in-out_infinite] [animation-delay:-4s]">
         <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-emerald-400" />
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+          <span className="h-2 w-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
             Synthesized
           </span>
         </div>
-        <p className="mt-2 text-xs text-zinc-300 leading-relaxed">
+        <p className="mt-2 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed">
           3 sources cited · 12ms inference
         </p>
       </div>
